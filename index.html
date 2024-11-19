@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>실수령액 계산기, 우리는 얼마 받고 일할까?</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>월 실수령액 계산기</h1>
+  </header>
+  <main>
+    <form id="calculator-form">
+      <label for="salary-type">급여 형태:</label>
+      <select id="salary-type">
+        <option value="monthly">월급</option>
+        <option value="annual">연봉</option>
+      </select>
+
+      <label for="salary">급여 금액:</label>
+      <div class="currency-input">
+        <input type="text" id="salary" placeholder="예: 3,000,000" required>
+        <span>원</span>
+      </div>
+
+      <label for="non-taxable">비과세 금액(월 별):</label>
+      <div class="currency-input">
+        <input type="text" id="non-taxable" value="200,000" required>
+        <span>원</span>
+      </div>
+
+      <label for="dependents">부양가족 수:</label>
+      <input type="number" id="dependents" value="1" min="1" required>
+
+      <label for="children">20세 이하 자녀 수:</label>
+      <input type="number" id="children" value="0" min="0">
+
+      <button type="button" id="calculate-btn">계산하기</button>
+    </form>
+
+    <section id="result">
+      <h2>실수령액 결과(월 별)</h2>
+      <div id="result-output" class="result-box"></div>
+
+      <h3>세부 계산</h3>
+      <div id="calculation-details" class="calculation-box"></div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
