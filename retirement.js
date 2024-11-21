@@ -1,10 +1,10 @@
 document.getElementById("calculate-retirement").addEventListener("click", function() {
     const averageSalaryInput = document.getElementById("average-salary").value;
-    const yearsWorked = document.getElementById("years-worked").value;
+    let yearsWorked = document.getElementById("years-worked").value;
 
     // 금액에서 쉼표를 제거하고 숫자로 변환
     let averageSalary = formatCurrency(averageSalaryInput);
-    let yearsWorked = parseInt(yearsWorked); // 근속 연수는 정수로 변환
+    yearsWorked = parseInt(yearsWorked); // 근속 연수는 정수로 변환
 
     // 유효성 검사
     if (isNaN(averageSalary) || isNaN(yearsWorked) || averageSalary <= 0 || yearsWorked <= 0) {
