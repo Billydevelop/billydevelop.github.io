@@ -135,14 +135,14 @@ footer p {
   font-size: 0.9rem;
 }
 
-#retirement-result, #pension-result {
+#retirement-result, #pension-result, #retirement-result {
     font-size: 1.5rem;
     font-weight: bold;
     color: #4CAF50;
     margin-top: 1rem;
 }
 
-#retirement-details, #pension-details {
+#retirement-details, #pension-details, #retirement-details {
     background: #f4f4f4;
     padding: 1rem;
     margin-top: 1rem;
