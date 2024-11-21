@@ -77,4 +77,7 @@ body {
   .calculation-box {
     border: 2px solid #007BFF;
   }
-  
+
+.adsbygoogle {
+  display: block !important;
+}
