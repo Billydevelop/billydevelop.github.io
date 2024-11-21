@@ -81,3 +81,10 @@ body {
 .adsbygoogle {
   display: block !important;
 }
+
+.ad-center {
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+}
+
