@@ -13,7 +13,10 @@ document.getElementById("calculate-pension").addEventListener("click", function(
     }
 
     // 계산식: 예상 연금액 = (현재 월 급여 × 5%) × 납부 기간
-    const pensionAmount = (averageSalary * 0.05) * yearsContributed;
+    let pensionAmount = (averageSalary * 0.05) * yearsContributed;
+
+    // 소수점 절삭
+    pensionAmount = Math.floor(pensionAmount); // 소수점 아래 버리기
 
     // 결과 출력
     document.getElementById("result-output").innerText = `예상 연금액: ${formatCurrency(pensionAmount)} 원`;
