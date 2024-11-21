@@ -1,6 +1,6 @@
 document.getElementById("calculate-pension").addEventListener("click", function() {
     const averageSalaryInput = document.getElementById("average-salary").value;
-    const yearsContributed = document.getElementById("years-contributed").value;
+    let yearsContributed = document.getElementById("years-contributed").value;
     
     // 금액에서 쉼표를 제거하고 숫자로 변환
     let averageSalary = formatCurrency(averageSalaryInput);
