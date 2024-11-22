@@ -26,7 +26,7 @@ document.getElementById("calculate-retirement").addEventListener("click", functi
 // 숫자에서 쉼표를 제거하고 숫자 값만 반환하는 함수
 function formatCurrency(value) {
     // 쉼표 제거 후 숫자로 변환
-    value = value.replace(/[^0-9.-]+/g, ''); 
+    value = value+"".replace(/[^0-9.-]+/g, ''); 
     return Number(value);
 }
 
