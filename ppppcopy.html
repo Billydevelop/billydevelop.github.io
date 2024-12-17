@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>도르핀 키우기</title>
+    <style>
+        /* 기본 스타일 */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #111827;
+            color: #ffffff;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+                /* 헤더 전체 컨테이너 */
+        .header-container {
+            display: flex; /* 플렉스 박스를 사용 */
+            justify-content: space-between; /* 양 끝으로 정렬 */
+            align-items: center; /* 수직 정렬 */
+            background-color: #1f2937; /* 헤더 배경색 */
+            padding: 10px 20px; /* 여백 추가 */
+            border-bottom: 2px solid #374151; /* 하단 테두리 */
+        }
+
+        /* 로고 스타일 */
+        .logo-container .game-logo {
+            width: 150px; /* 로고 크기 */
+            height: auto;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3)); /* 그림자 효과 */
+            animation: float 3s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* 버튼 컨테이너 */
+        .button-container {
+            display: flex;
+            gap: 10px; /* 버튼 간격 */
+        }
+
+        /* 버튼 스타일 */
+        .header-btn {
+            background: #00e0e7; /* 버튼 색상 */
+            color: white; /* 텍스트 색상 */
+            border: none; /* 테두리 제거 */
+            border-radius: 5px; /* 둥근 모서리 */
+            padding: 8px 15px; /* 버튼 패딩 */
+            cursor: pointer; /* 마우스 오버 시 커서 변경 */
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .header-btn:hover {
+            background-color: #0495a8; /* 호버 효과 */
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+
+        ::-webkit-scrollbar.button {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            background: rgba(230, 230, 230, 0.3);
+            -webkit-transition: all .2s;
+            transition: all .2s;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        /* 게임 컨테이너 */
+        .game-container {
+            border-radius:20px;
+            text-align: center;
+            background-color: #1f2937;
+            padding: 10px;
+            max-width: 700px;
+            border-bottom: 2px solid #374151;
+            margin-bottom: 20px;
+            box-shadow: 0 0 1px #dee9f19c, 0 0 2px #dee9f19c, 0 0 3px #dee9f19c,
+            0 0 4px #dee9f19c, 0 0 5px #dee9f19c, 0 0 6px #dee9f19c, 0 0 7px #dee9f19c,
+            0 0 8px #dee9f19c, 0 0 9px #dee9f19c, 0 0 10px #dee9f19c;
+        }
+
+        /* 플레이어 정보 컨테이너 */
+        .header-info {
+            background: linear-gradient(to right, #2c3e50, #b7d8dd);
+            border-radius: 15px;
+            padding: 10px;
+            width: 90%;
+            margin: 20px auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #f9fafb;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+        }
+
+        /* 캐릭터 이미지 */
+        .character-box {
+            position: relative;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .character-box img {
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+            animation: float 3s infinite ease-in-out;
+        }
+
+
+
+
+
+
+        @keyframes float {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-10px); }
+        }
+        /* 클릭 수 증가 시 효과 (부드럽게 커지기) */
+    
+    
+        @keyframes grow {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .grow-effect {
+            animation: grow 0.5s ease-in-out;
+        }
+
+        /* 클릭 수 감소 시 효과 (흔들리기) */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        .shake-effect {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        /* 공통 호버 효과 */
+        .hover-effect {
+            filter: brightness(1.2);
+            transition: filter 0.2s;
+        }
+
+
+
+
+
+
+
+        
+        /* 경험치 Progress Bar */
+        .progress-container {
+            border: 0.4px dashed #ffffff;
+            width: 80%;
+            margin: 20px auto;
+            background: #2C2F3F;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 20px;
+            background: linear-gradient(to right, #2c3e50, #5699a3);
+            text-align: center;
+            line-height: 20px;
+            font-size: 0.9rem;
+            color: white;
+        }
+
+
+        /* 오버레이 메시지 */
+        .overlay-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            display: none;
+        }
+
+        /* 버튼 */
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .button-group button {
+            background-color: #1ed3eb;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .button-group button.orange {
+            background-color: #363500;
+            font-weight: bold;
+        }
+        
+        .button-group button.red {
+            background-color: #6e0404;
+            font-weight: bold;
+        }
+
+        /* 컬렉션 영역 */
+        .collection-container {
+            position:sticky;
+            max-width: 750px;
+            max-width: 1000px;
+            background-color: #1f2937;
+            flex: 1;
+            overflow-y: auto;
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 0 1px #dee9f19c, 0 0 2px #dee9f19c, 0 0 3px #dee9f19c,
+            0 0 4px #dee9f19c, 0 0 5px #dee9f19c, 0 0 6px #dee9f19c, 0 0 7px #dee9f19c,
+            0 0 8px #dee9f19c, 0 0 9px #dee9f19c, 0 0 10px #dee9f19c;
+        }
+        
+        .collection-header {
+            position: sticky;
+            top: 0;
+            background-color: #374151;
+            padding: 10px;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        .collection-box {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            padding: 10px;
+        }
+
+        .collection-item {
+            background: #4b5563;
+            border-radius: 5px;
+            width: 130px;
+            height: 130px;
+            max-width:350px;
+            max-height:350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 0 1px #dee9f19c, 0 0 2px #dee9f19c, 0 0 3px #dee9f19c,
+            0 0 4px #dee9f19c, 0 0 5px #dee9f19c, 0 0 6px #dee9f19c, 0 0 7px #dee9f19c,
+            0 0 8px #dee9f19c, 0 0 9px #dee9f19c, 0 0 10px #dee9f19c;
+        }
+
+        /* 모달창 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .modal-content {
+            width: 350px;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            box-shadow: 0 8px 16px -3px #ffffff;
+        }
+
+        .modal-content input {
+            background: transparent;
+            padding: 5px;
+            margin-bottom: 10px;
+            color: white;
+            box-shadow: 0 2px 4px -1px #ffffff;
+        }
+
+        .modal-content button{
+            background-color: #1ed3eb;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <!-- 게임 컨테이너 -->
+    <div class="game-container">
+        <div class="header-container">
+            <!-- 로고 이미지 -->
+            <div class="logo-container">
+                <img src="assets/logo.png" alt="도르핀 키우기 로고" class="game-logo">
+            </div>
+            <!-- 우측 버튼 -->
+            <div class="button-container">
+                <button class="header-btn" id="bgm-toggle-btn" onclick="toggleBGM()">🎵BGM:ON </button>
+                <button class="header-btn" onclick="location.href='https://ch.sooplive.co.kr/333333333327' ">📺숲 바로가기</button>
+            </div>
+
+
+
+        </div>
+        <div class="header-info" id="player-info">
+            플레이어명 | 레벨: 1 | 경험치: 0/100
+        </div>
+
+        <div class="character-box">
+            <img id="character-img" src="./assets/LEVEL1-테스트방송 도르핀.png" alt="캐릭터">
+            <div id="overlay-msg" class="overlay-message"></div>
+        </div>
+
+        <div class="progress-container">
+            <div id="progress-bar" class="progress-bar" style="width: 0%;">0%</div>
+        </div>
+        <div id="collection-info" style="text-align: center; margin: 10px; color: #f9fafb;">
+            <!-- 컬렉션 클릭 시 제목과 설명이 여기에 표시됩니다 -->
+        </div>
+        <div class="button-group">
+            <button onclick="handleClick(1, '르핀이는 행복해!')">채팅/칭찬</button>
+            <button onclick="handleClick(1, '복어단이 최고야!')">통나무 들기</button>
+            <button class="orange" onclick="handleClick(-1, '미워!')">혼내기</button>
+            <button class="red" onclick="resetGame()">바람피기</button>
+        </div>
+    </div>
+
+    <!-- 컬렉션 영역 -->
+    <div class="collection-container">
+        <div class="collection-header">
+            컬렉션 <span id="collection-count">(0/12)</span>
+        </div>
+        <div id="collection-box" class="collection-box"></div>
+    </div>
+
+    <!-- 모달 -->
+    <div id="name-modal" class="modal">
+        <div class="modal-content">
+            <h3>플레이어 이름 입력</h3>
+            <input type="text" id="player-name" placeholder="이름 입력 (최대 10자)" maxlength="10">
+            <button onclick="startGame()">시작하기</button>
+        </div>
+    </div>
+
+        <!-- 커스텀 알림 모달 -->
+    <div id="alert-modal" class="modal">
+        <div class="modal-content">
+            <p id="alert-message">메시지 내용</p>
+            <button onclick="closeAlertModal()">확인</button>
+        </div>
+    </div>
+
+    <!-- 커스텀 확인 모달 -->
+    <div id="confirm-modal" class="modal">
+        <div class="modal-content">
+            <p id="confirm-message">정말 초기화 하시겠습니까?</p>
+            <button id="confirm-yes" onclick="confirmYes()">확인</button>
+            <button onclick="closeConfirmModal()">취소</button>
+        </div>
+    </div>
+
+    <script>
+
+        function updateProgressBar() {
+            const progressBar = document.getElementById("progress-bar");
+            const currentLevelTarget = levels[level - 1]; // 현재 레벨 목표 클릭 수
+            const previousLevelTarget = level > 1 ? levels[level - 2] : 0; // 이전 레벨 목표 클릭 수 (첫 레벨은 0)
+
+            // 진행률 계산
+            const progressPercentage = ((clicks - previousLevelTarget) / (currentLevelTarget - previousLevelTarget)) * 100;
+
+            // 프로그래스 바 스타일 업데이트
+            progressBar.style.width = `${Math.min(progressPercentage, 100)}%`;
+            progressBar.innerText = `${Math.min(Math.floor(progressPercentage), 100)}%`; // 소수점 제거 후 텍스트로 표시
+        }
+
+
+        let clicks = 0, level = 1, collections = [];
+        const levels = [100, 200, 400, 800, 1600, 3200, 6400, 12800, 25600, 50000, 100000, 1000000];
+        const totalCollections = 12;
+        
+        const characterImages = [
+            "assets/LEVEL1-테스트방송 도르핀.png",
+            "assets/LEVEL2_1세대 도르핀 싱드컵.png",
+            "assets/LEVEL3_2세대 도르핀.png",
+            "assets/LEVEL4_루키존 도르핀.png",
+            "assets/LEVEL5_피코파크 도르핀.png",
+            "assets/LEVEL6_3세대 도르핀.png",
+            "assets/LEVEL7_할로윈 도르핀.png",
+            "assets/LEVEL8_킷땅 도르핀.png",
+            "assets/LEVEL9_도르핀볼.png",
+            "assets/LEVEL10_나작버 도르핀.png",
+            "assets/LEVEL11_로나월드 도르핀.png",
+            "assets/LEVEL12_슈퍼스타 도르핀.png",
+        ];
+
+        const collectionData = [
+    { image: "assets/LEVEL1-테스트방송 도르핀.png", title: "테스트방송 도르핀", description: "레벨 2 달성 보상입니다." },
+    { image: "assets/LEVEL2_1세대 도르핀 싱드컵.png", title: "1세대 도르핀 싱드컵", description: "레벨 3 달성 보상입니다." },
+    { image: "assets/LEVEL3_2세대 도르핀.png", title: "2세대 도르핀", description: "레벨 4 달성 보상입니다." },
+    { image: "assets/LEVEL4_루키존 도르핀.png", title: "루키존 도르핀", description: "레벨 5 달성 보상입니다." },
+    { image: "assets/LEVEL5_피코파크 도르핀.png", title: "피코파크 도르핀", description: "레벨 6 달성 보상입니다." },
+    { image: "assets/LEVEL6_3세대 도르핀.png", title: "3세대 도르핀", description: "레벨 2 달성 보상입니다." },
+    { image: "assets/LEVEL7_할로윈 도르핀.png", title: "할로윈 도르핀", description: "레벨 3 달성 보상입니다." },
+    { image: "assets/LEVEL8_킷땅 도르핀.png", title: "킷땅 도르핀", description: "레벨 4 달성 보상입니다." },
+    { image: "assets/LEVEL9_도르핀볼.png", title: "도르핀볼", description: "레벨 5 달성 보상입니다." },
+    { image: "assets/LEVEL10_나작버 도르핀.png", title: "나작버 도르핀", description: "레벨 6 달성 보상입니다." },
+    { image: "assets/LEVEL11_로나월드 도르핀.png", title: "로나월드 도르핀", description: "레벨 5 달성 보상입니다." },
+    { image: "assets/LEVEL12_슈퍼스타 도르핀.png", title: "슈퍼스타 도르핀", description: "레벨 6 달성 보상입니다." },
+    // 나머지 컬렉션 데이터 추가
+];
+
+
+        let playerName = '';
+
+
+        window.onload = () => {
+            loadGame();
+            if (!playerName) {
+                showModal('name-modal'); // 플레이어명이 없으면 모달창 표시
+            } else {
+                updatePlayerInfo();
+                updateCharacterImage();
+                updateProgressBar();
+                updateCollection();
+            }
+        };
+
+
+        // 캐릭터 이미지 교체 함수
+        function updateCharacterImage() {
+            document.getElementById("character-img").src = characterImages[level - 1];
+            document.getElementById("collection-info").innerHTML = ""; // 텍스트 초기화
+        }
+        
+        
+
+        function startGame() {
+            const input = document.getElementById('player-name').value.trim();
+            if (!input) return alert('이름을 입력해주세요!');
+
+            playerName = input; // 입력된 이름 저장
+            localStorage.setItem('playerName', playerName); // 로컬스토리지에 저장
+            
+            hideModal('name-modal');
+            updatePlayerInfo();
+            saveGame();
+        }
+
+        function handleClick(amount, message) {
+            clicks += amount;
+            showOverlayMessage(message);
+            updateProgressBar();
+            checkLevelUp();
+            updatePlayerInfo(); // 플레이어 정보 업데이트
+            saveGame(); // 로컬스토리지에 저장
+
+            // 캐릭터 이미지에 효과 적용
+            const characterImg = document.getElementById("character-img");
+
+            // 기존 클래스 제거
+            characterImg.classList.remove('grow-effect', 'shake-effect');
+
+            // 조건에 따라 클래스 추가
+            if (amount > 0) {
+                characterImg.classList.add('grow-effect'); // 클릭 수 증가 시
+            } else {
+                characterImg.classList.add('shake-effect'); // 클릭 수 감소 시
+            }
+
+            // 애니메이션이 끝나면 클래스 제거 (0.5초 후)
+            setTimeout(() => {
+                characterImg.classList.remove('grow-effect', 'shake-effect');
+            }, 500);
+            }
+
+            
+            document.querySelectorAll('.button-group button').forEach(button => {
+                button.addEventListener('mouseenter', () => {
+                    const characterImg = document.getElementById("character-img");
+                    characterImg.classList.add('hover-effect');
+                });
+
+                button.addEventListener('mouseleave', () => {
+                    const characterImg = document.getElementById("character-img");
+                    characterImg.classList.remove('hover-effect');
+                });
+            });
+
+
+
+
+    
+
+        function showOverlayMessage(message) {
+            const overlay = document.getElementById('overlay-msg');
+            overlay.innerText = message;
+            overlay.style.display = 'block';
+            setTimeout(() => { overlay.style.display = 'none'; }, 1000);
+        }
+
+        function checkLevelUp() {
+            if (clicks >= levels[level - 1]) {
+                level++;
+        // 신규 컬렉션 지급
+            const newCollectionImage = collectionData[level - 2];
+            collections.push(newCollectionImage);
+            updateCharacterImage();
+            updateCollection();
+            showAlert(`레벨업! 현재 레벨: ${level}`);
+        }
+
+            updateProgressBar(); // 레벨업 후 프로그래스 바 업데이트
+            updatePlayerInfo();
+            saveGame();
+                }
+
+        function updatePlayerInfo() {
+            const playerName = localStorage.getItem('playerName') || '플레이어';
+            document.getElementById('player-info').innerText = 
+                `${playerName} | 레벨: ${level} | 경험치: ${clicks}/${levels[level - 1]}`;
+        }
+        
+// 컬렉션 영역 업데이트
+function updateCollection() {
+    const box = document.getElementById('collection-box');
+    box.innerHTML = '';
+
+    collections.forEach((collection) => {
+        const div = document.createElement('div');
+        div.className = 'collection-item';
+        div.style.backgroundImage = `url('${collection.image}')`;
+        div.style.backgroundSize = 'cover';
+        div.style.backgroundPosition = 'center';
+
+        // 클릭 시 이미지와 제목/설명 표시
+        div.onclick = () => {
+            document.getElementById("character-img").src = collection.image;
+            document.getElementById("collection-info").innerHTML = 
+                `<h3>${collection.title}</h3><p>${collection.description}</p>`;
+        };
+        box.appendChild(div);
+    });
+
+    document.getElementById('collection-count').innerText = `(${collections.length}/12)`;
+}
+
+
+
+
+
+        function resetGame() {
+            showConfirm('정말 초기화 하시겠습니까?', () => {
+                clicks = 0; level = 1; collections = [];
+                playerName= "";//플레이어명 초기화화
+                
+                // 로컬스토리지 초기화
+                localStorage.removeItem('gameState');
+                localStorage.removeItem('playerName');
+                
+                // 페이지 리로드
+                showAlert('게임이 초기화되었습니다.');
+                location.reload(); // 페이지 새로고침
+            });
+        }
+
+
+        function saveGame() {
+    localStorage.setItem('gameState', JSON.stringify({
+        playerName: playerName,
+        clicks: clicks,
+        level: level,
+        collections: collections
+    }));
+}
+
+
+        function loadGame() {
+            const savedData = JSON.parse(localStorage.getItem('gameState'));
+            if (savedData) {
+                playerName = savedData.playerName || '';
+                clicks = savedData.clicks || 0;
+                level = savedData.level || 1;
+                collections = savedData.collections || [];
+            } else {
+                playerName = ""; // 저장된 데이터가 없으면 초기화
+            }
+            
+            if (!playerName) {
+                showModal('name-modal'); // 플레이어명이 없으면 모달 표시
+            } else {
+                updatePlayerInfo();
+                updateCollection();
+                updateCharacterImage();
+                updateProgressBar();
+            }
+        }
+
+
+
+        ///모달창
+
+        function showModal(id) { document.getElementById(id).style.display = 'flex'; }
+        function hideModal(id) { document.getElementById(id).style.display = 'none'; }
+
+
+        function showAlert(message) {
+            const alertMessage = document.getElementById('alert-message');
+            alertMessage.innerText = message; // 메시지 설정
+            document.getElementById('alert-modal').style.display = 'flex';
+        }
+
+        function closeAlertModal() {
+            document.getElementById('alert-modal').style.display = 'none';
+        }
+
+        let confirmCallback = null; // 확인 버튼 클릭 시 실행할 콜백 함수
+
+        function showConfirm(message, callback) {
+            const confirmMessage = document.getElementById('confirm-message');
+            confirmMessage.innerText = message; // 메시지 설정
+            confirmCallback = callback; // 콜백 함수 저장
+            document.getElementById('confirm-modal').style.display = 'flex';
+        }
+
+        function confirmYes() {
+            if (confirmCallback) confirmCallback(); // 확인 버튼 클릭 시 콜백 실행
+            closeConfirmModal();
+        }
+
+        function closeConfirmModal() {
+            document.getElementById('confirm-modal').style.display = 'none';
+        }
+
+
+
+
+        
+
+                // 배경음악 설정
+        const bgm = new Audio("assets/background-music.mp3");
+        bgm.loop = true; // 반복 재생
+        let isBgmPlaying = false;
+
+        // 버튼 사운드 효과 설정
+        const hoverSound1 = new Audio("assets/header-btn-hover.mp3");
+        const clickSound1 = new Audio("assets/header-btn.mp3");
+        const hoverSound = new Audio("assets/+1button-btn-hover.mp3");
+        const clickSound = new Audio("assets/+1button-btn.mp3");
+
+        // BGM 토글 함수
+        function toggleBGM() {
+            const bgmButton = document.getElementById("bgm-toggle-btn");
+            if (isBgmPlaying) {
+                bgm.pause();
+                bgmButton.innerText = "🎵BGM : ON";
+            } else {
+                bgm.play();
+                bgmButton.innerText = "🔇BGM : OFF";
+            }
+            isBgmPlaying = !isBgmPlaying; // 상태 변경
+        }
+
+        // 버튼 사운드 효과 부여
+        document.querySelectorAll('.header-btn').forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                hoverSound1.currentTime = 0; // 시작점으로 리셋
+                hoverSound1.play();
+            });
+
+            button.addEventListener('click', () => {
+                clickSound1.currentTime = 0; // 시작점으로 리셋
+                clickSound1.play();
+            });
+        });
+
+        // handleClick 버튼에도 효과 추가
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                hoverSound.currentTime = 0;
+                hoverSound.play();
+            });
+
+            button.addEventListener('click', () => {
+                clickSound.currentTime = 0;
+                clickSound.play();
+            });
+        });
+
+
+                // handleClick 버튼에도 효과 추가
+                document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                hoverSound.currentTime = 0;
+                hoverSound.play();
+            });
+
+            button.addEventListener('click', () => {
+                clickSound.currentTime = 0;
+                clickSound.play();
+            });
+        });
+
+
+</script>
+</body>
+</html>
