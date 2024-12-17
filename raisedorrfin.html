@@ -362,7 +362,7 @@
             </div>
             <!-- 우측 버튼 -->
             <div class="button-container">
-                <button class="header-btn" id="bgm-toggle-btn" onclick="toggleBGM()">🎵BGM:ON </button>
+                <button class="header-btn" id="bgm-toggle-btn" onclick="toggleBGM()">🎵 </button>
                 <button class="header-btn" onclick="location.href='https://ch.sooplive.co.kr/333333333327' ">📺SOOP</button>
             </div>
 
@@ -730,10 +730,10 @@ function updateCollection() {
             const bgmButton = document.getElementById("bgm-toggle-btn");
             if (isBgmPlaying) {
                 bgm.pause();
-                bgmButton.innerText = "🎵BGM : ON";
+                bgmButton.innerText = "🎵";
             } else {
                 bgm.play();
-                bgmButton.innerText = "🔇BGM : OFF";
+                bgmButton.innerText = "🔇";
             }
             isBgmPlaying = !isBgmPlaying; // 상태 변경
         }
