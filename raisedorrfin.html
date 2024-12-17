@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>도르핀 키우기 - 버츄얼 스트리머 도르핀과 함께하는 클릭 게임</title>
     <!-- 기본 메타 태그 -->
     <meta name="description" content="도르핀 키우기는 인기 버츄얼 스트리머 '도르핀'을 키우는 웹게임입니다. 클릭으로 레벨업하고 새로운 컬렉션과 도르핀의 다양한 모습을 만나보세요.">
@@ -39,6 +39,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            touch-action: manipulation; /* 터치 확대 방지 */
         }
 
 
@@ -238,6 +239,7 @@
             justify-content: center;
             gap: 10px;
             margin-bottom: 10px;
+            touch-action: manipulation; /* 터치 확대 방지 */
         }
 
         .button-group button {
@@ -361,7 +363,7 @@
             <!-- 우측 버튼 -->
             <div class="button-container">
                 <button class="header-btn" id="bgm-toggle-btn" onclick="toggleBGM()">🎵BGM:ON </button>
-                <button class="header-btn" onclick="location.href='https://ch.sooplive.co.kr/333333333327' ">📺숲 바로가기</button>
+                <button class="header-btn" onclick="location.href='https://ch.sooplive.co.kr/333333333327' ">📺SOOP</button>
             </div>
 
 
@@ -425,6 +427,16 @@
     </div>
 
     <script>
+
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', (event) => {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) { // 더블 탭 시간 간격 체크
+                event.preventDefault(); // 기본 확대 동작 방지
+            }
+            lastTouchEnd = now;
+        }, false);
+
 
         function updateProgressBar() {
             const progressBar = document.getElementById("progress-bar");
