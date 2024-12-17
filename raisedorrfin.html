@@ -80,7 +80,7 @@
             border-radius: 5px; /* 둥근 모서리 */
             padding: 8px 15px; /* 버튼 패딩 */
             cursor: pointer; /* 마우스 오버 시 커서 변경 */
-            font-size: 0.66rem;
+            font-size: 0.74rem;
             font-weight: bold;
             transition: background-color 0.3s;
         }
@@ -113,11 +113,10 @@
 
         /* 게임 컨테이너 */
         .game-container {
+            width: 450px;
             border-radius:20px;
             text-align: center;
             background-color: #1f2937;
-            padding: 10px;
-            max-width: 700px;
             border-bottom: 2px solid #374151;
             margin-bottom: 20px;
             box-shadow: 0 0 1px #dee9f19c, 0 0 2px #dee9f19c, 0 0 3px #dee9f19c,
@@ -205,7 +204,7 @@
             border: 0.4px dashed #ffffff;
             width: 80%;
             margin: 20px auto;
-            background: #2C2F3F;
+            background: linear-gradient(to right, #2c3e50, #979797);
             border-radius: 10px;
             overflow: hidden;
         }
@@ -265,7 +264,7 @@
 
         /* 컬렉션 영역 */
         .collection-container {
-            width: 421px;
+            width: 450px;
             position:sticky;
             background-color: #1f2937;
             flex: 1;
@@ -324,7 +323,6 @@
         }
 
         .modal-content {
-            width: 350px;
             padding: 20px;
             border-radius: 10px;
             text-align: center;
@@ -350,6 +348,23 @@
             font-weight: bold;
         }
 
+        .options button {
+            margin: 5px;
+            padding: 10px 15px;
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .options button:disabled {
+            background-color: #6b7280;
+            cursor: not-allowed;
+        }
+
 
     </style>
 </head>
@@ -372,8 +387,14 @@
         </div>
         <div class="header-info" id="player-info">
             플레이어명 | 레벨: 1 | 경험치: 0/100
+            </div>
+        <div class="button-group">
+            <button onclick="openPinballModal()">도르 핀볼</button>
+            
         </div>
 
+
+        
         <div class="character-box">
             <img id="character-img" src="./assets/LEVEL1-테스트방송 도르핀.png" alt="캐릭터">
             <div id="overlay-msg" class="overlay-message"></div>
@@ -426,6 +447,38 @@
             <button onclick="closeConfirmModal()">취소</button>
         </div>
     </div>
+
+
+        <!-- 도르핀 핀볼 게임 모달 -->
+    <div id="pinball-modal" class="modal">
+        <div class="modal-content">
+            <!-- 핀볼 이미지와 설명 -->
+            <img src="./assets/LOGO.png" alt="도르핀 핀볼" style="width: 100%; height: auto;">
+            <p>클릭 수를 걸고 핀볼 게임에 도전하세요!<br> 승리 시 클릭 수 2배 획득, 패배 시 차감됩니다.</p>
+            <h3>내 경험치: <span id="player-clicks"></span></h3>
+            
+            <!-- 옵션 선택 버튼 -->
+            <div class="options">
+                <button class="pinball-option" data-option="100">100</button>
+                <button class="pinball-option" data-option="500">500</button>
+                <button class="pinball-option" data-option="1000">1,000</button>
+                <button class="pinball-option" data-option="3000">3,000</button>
+                <button class="pinball-option" data-option="10000">10,000</button>
+            </div>
+            <button onclick="closePinballModal()">닫기</button>
+        </div>
+    </div>
+
+    <!-- 핀볼 게임 진행 화면 -->
+    <div id="pinball-game" class="modal">
+        <div class="modal-content">
+            <h3>🎱도르 핀볼 멸망전🎱</h3>
+            <canvas id="pinball-canvas" width="300" height="500"></canvas>
+            <p id="pinball-result"></p>
+            <button onclick="closePinballGame()">확인</button>
+        </div>
+    </div>
+
 
     <script>
 
@@ -778,6 +831,190 @@ function updateCollection() {
                 clickSound.play();
             });
         });
+
+
+    //도르핀볼
+
+
+
+    const playerBallWins = 0.3; // 플레이어 승리 확률
+    let selectedOption = 0; // 선택한 핀볼 옵션
+
+        // 핀볼 모달 열기
+        function openPinballModal() {
+            document.getElementById('player-clicks').innerText = clicks; // 현재 클릭 수 표시
+            updatePinballOptions();
+            showModal('pinball-modal'); // 모달 열기
+        }
+
+        // 옵션 활성화/비활성화 및 이벤트 리스너 설정
+        function updatePinballOptions() {
+            document.querySelectorAll('.pinball-option').forEach(button => {
+                const optionValue = parseInt(button.getAttribute('data-option'), 10);
+                button.disabled = clicks < optionValue; // 클릭 수 부족 시 비활성화
+
+                // 기존 이벤트 제거 후 새 이벤트 추가
+                button.onclick = () => {
+                    if (clicks >= optionValue) {
+                        selectedOption = optionValue; // 선택한 옵션 저장
+                        startPinballGame();
+                    } else {
+                        alert("클릭 수가 부족합니다!");
+                    }
+                };
+            });
+        }
+
+
+        // 핀볼 게임 시작
+        function startPinballGame(optionValue) {
+            closeModal('pinball-modal'); // 옵션 모달 닫기
+            showModal('pinball-game'); // 핀볼 게임 화면 표시           
+
+            document.getElementById('pinball-result').innerText = "게임 진행 중...";
+
+
+            setTimeout(() => {
+        const result = Math.random() < playerBallWins ? 'win' : 'lose'; // 승리 확률 판정
+        processPinballResult(result);
+    }, 1500); // 1.5초 딜레이 후 결과 표시
+}
+
+        // 핀볼 결과 처리
+        function processPinballResult(result) {
+            let resultText = "";
+            if (result === 'win') {
+                clicks += selectedOption * 2; // 승리 시 클릭 수 2배 추가
+                resultText = `승리! +${selectedOption * 2} 경험치`;
+            } else {
+                clicks -= selectedOption; // 패배 시 클릭 수 차감
+                resultText = `패배... -${selectedOption} 경험치`;
+            }
+
+            // 결과 반영
+            document.getElementById('pinball-result').innerText = resultText;
+            updatePlayerInfo(); // UI 업데이트
+            saveGame(); // 게임 상태 저장
+        }
+
+        function closePinballGame() {
+            document.getElementById('pinball-game').style.display = 'none';
+        }
+
+        function closePinballModal() {
+            document.getElementById('pinball-modal').style.display = 'none';
+        }
+
+// 모달 제어 함수
+function showModal(id) {
+    document.getElementById(id).style.display = 'flex';
+}
+
+function closeModal(id) {
+    document.getElementById(id).style.display = 'none';
+}
+
+// 플레이어 정보 업데이트
+function updatePlayerInfo() {
+    document.getElementById('player-info').innerText =
+        `${playerName} | 레벨: ${level} | 경험치: ${clicks}/${levels[level - 1]}`;
+}
+
+
+
+//핀볼게임
+
+let canvas, ctx; // 캔버스 및 컨텍스트
+let ball1, ball2; // 두 공 객체
+let animationFrame; // 애니메이션 프레임 ID
+
+// 핀볼 게임 시작
+function startPinballGame() {
+    selectedOption = selectedOption; // 선택한 옵션 저장
+    clicks -= selectedOption; // 베팅 클릭 수 차감
+    closeModal('pinball-modal'); // 핀볼 옵션 모달 닫기
+    showModal('pinball-game'); // 핀볼 게임 화면 표시
+
+    // 결과 메시지 초기화
+    document.getElementById('pinball-result').innerText = "";
+    initPinballCanvas();
+    startPinballAnimation();
+}
+
+// 핀볼 캔버스 초기화
+function initPinballCanvas() {
+    canvas = document.getElementById('pinball-canvas');
+    ctx = canvas.getContext('2d');
+
+    // 속도 랜덤화: 확률에 따라 ball1이 더 빠를 확률 70%, ball2는 30%
+    const speeds = shuffleArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+    if (Math.random() <= 0.7) { // 70% 확률로 ball1이 빠름
+        ball1 = { x: 100, y: 0, radius: 10, color: 'blue', speed: speeds[9] }; // 속도 높음
+        ball2 = { x: 200, y: 0, radius: 10, color: 'orange', speed: speeds[8] }; // 속도 낮음
+    } else { // 30% 확률로 ball2가 빠름
+        ball1 = { x: 100, y: 0, radius: 10, color: 'blue', speed: speeds[8] }; // 속도 낮음
+        ball2 = { x: 200, y: 0, radius: 10, color: 'orange', speed: speeds[9] }; // 속도 높음
+    }
+}
+
+
+// 배열 섞기 함수 (숫자 랜덤화)
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+// 핀볼 애니메이션 시작
+function startPinballAnimation() {
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // 캔버스 초기화
+
+        // 공 이동 및 지그재그 좌우 움직임
+        ball1.y += ball1.speed;
+        ball1.x += Math.sin(ball1.y * 0.05) * 2; // 지그재그 이동
+
+        ball2.y += ball2.speed;
+        ball2.x += Math.sin(ball2.y * 0.05) * 2; // 지그재그 이동
+
+        // 공 그리기
+        drawBall(ball1);
+        drawBall(ball2);
+
+        // 게임 종료 조건 (바닥 도달 시)
+        if (ball1.y >= canvas.height || ball2.y >= canvas.height) {
+            cancelAnimationFrame(animationFrame); // 애니메이션 정지
+            determinePinballResult(); // 결과 판정
+            return;
+        }
+
+        // 다음 프레임 요청
+        animationFrame = requestAnimationFrame(animate);
+    }
+
+    animate();
+}
+
+// 공 그리기 함수
+function drawBall(ball) {
+    ctx.beginPath();
+    ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+    ctx.fillStyle = ball.color;
+    ctx.fill();
+    ctx.closePath();
+}
+
+// 핀볼 게임 결과 판정
+function determinePinballResult() {
+    const result = ball1.y > ball2.y ? 'lose' : 'win'; // 더 늦게 도달한 공이 패배
+    processPinballResult(result);
+}
+
+
+
+
 
 
 </script>
