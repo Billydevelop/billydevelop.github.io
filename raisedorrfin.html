@@ -29,17 +29,17 @@
     <!-- 파비콘 -->
     <link rel="icon" href="metaAssets/파비콘 (Favicon).png" type="image/png">    <style>
         /* 기본 스타일 */
+/* 전체 배경 설정 */
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #111827;
+            background: linear-gradient(180deg, #004B75 0%, #041C2C 100%);
             color: #ffffff;
-            width: 100%;
             height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            touch-action: manipulation; /* 터치 확대 방지 */
+            justify-content: center;
         }
 
 
@@ -409,7 +409,7 @@
         <div class="button-group">
             <button onclick="handleClick(1, '르핀이는 행복해!')">채팅/칭찬</button>
             <button onclick="handleClick(1, '복어단이 최고야!')">통나무 들기</button>
-            <button class="orange" onclick="handleClick(-1, '미워!')">혼내기</button>
+            <button class="orange" onclick="handleClick(-1, '미워!')">고로시</button>
             <button class="red" onclick="resetGame()">바람피기</button>
         </div>
     </div>
@@ -526,18 +526,18 @@
         ];
 
         const collectionData = [
-    { image: "assets/LEVEL1-테스트방송 도르핀.png", title: "테스트방송 도르핀", description: "레벨 2 달성 보상입니다." },
-    { image: "assets/LEVEL2_1세대 도르핀 싱드컵.png", title: "1세대 도르핀 싱드컵", description: "레벨 3 달성 보상입니다." },
-    { image: "assets/LEVEL3_2세대 도르핀.png", title: "2세대 도르핀", description: "레벨 4 달성 보상입니다." },
-    { image: "assets/LEVEL4_루키존 도르핀.png", title: "루키존 도르핀", description: "레벨 5 달성 보상입니다." },
-    { image: "assets/LEVEL5_피코파크 도르핀.png", title: "피코파크 도르핀", description: "레벨 6 달성 보상입니다." },
-    { image: "assets/LEVEL6_3세대 도르핀.png", title: "3세대 도르핀", description: "레벨 2 달성 보상입니다." },
-    { image: "assets/LEVEL7_할로윈 도르핀.png", title: "할로윈 도르핀", description: "레벨 3 달성 보상입니다." },
-    { image: "assets/LEVEL8_킷땅 도르핀.png", title: "킷땅 도르핀", description: "레벨 4 달성 보상입니다." },
-    { image: "assets/LEVEL9_도르핀볼.png", title: "도르핀볼", description: "레벨 5 달성 보상입니다." },
-    { image: "assets/LEVEL10_나작버 도르핀.png", title: "나작버 도르핀", description: "레벨 6 달성 보상입니다." },
-    { image: "assets/LEVEL11_로나월드 도르핀.png", title: "로나월드 도르핀", description: "레벨 5 달성 보상입니다." },
-    { image: "assets/LEVEL12_슈퍼스타 도르핀.png", title: "슈퍼스타 도르핀", description: "레벨 6 달성 보상입니다." },
+    { image: "assets/LEVEL1-테스트방송 도르핀.png", title: "테스트방송 도르핀", description: "[레벨 2 달성 보상] 도르핀이는 응애야! 방송은 어떻게 하는걸까? 걱정이 많다.. 일단 틀어보자.." },
+    { image: "assets/LEVEL2_1세대 도르핀 싱드컵.png", title: "1세대 도르핀 싱드컵", description: "[레벨 3 달성 보상] 도르핀의 기원! 괴물이 피는 숲으로 싱드컵에 출현하여 말 그대로 [괴물 신입]으로 많은 관심을 받았다." },
+    { image: "assets/LEVEL3_2세대 도르핀.png", title: "2세대 도르핀", description: "[레벨 4 달성 보상] SOOP(당시 아프리카) 이적 완료, 여담으로 도르핀은 SOOP 테스트 방송에서 50두산을 받았으며 치지직 식구 다 버리고 오면 100두산 및 회장을 보장하겠다 제안 받았지만 거절하여 시청자와의 의리를 지켰다." },
+    { image: "assets/LEVEL4_루키존 도르핀.png", title: "루키존 도르핀", description: "[레벨 5 달성 보상] 도르핀은 SOOP 이적 1주일 만에 루키존이 되었다. 심지어 [SOOP 데뷔 전 아무 생각 없이 루키존을 신청하였다.] 라고 밝혔다." },
+    { image: "assets/LEVEL5_피코파크 도르핀.png", title: "피코파크 도르핀", description: "[레벨 6 달성 보상] 데뷔 초기 도르핀은 뉴걸들과 함께 피코파크 합방을 진행하였다. 피코파크 멤버들이 모두 잘되자 팬들 사이에서는 [피코파크 멤버에 뭐가 있는게 아니냐] 라는 말이 나오고 있다." },
+    { image: "assets/LEVEL6_3세대 도르핀.png", title: "3세대 도르핀", description: "[레벨 7 달성 보상] 현재 도르핀의 기본 베이스로 1세대(VRoid), 2세대(찰흙)과는 다르게 극찬을 받았다. 이쁘다 이뻐!" },
+    { image: "assets/LEVEL7_할로윈 도르핀.png", title: "할로윈 도르핀", description: "[레벨 8 달성 보상] 이미지를 구하지 못했습니다." },
+    { image: "assets/LEVEL8_킷땅 도르핀.png", title: "킷땅 도르핀", description: "[레벨 9 달성 보상]미테테네~ 콘나 칸지데!  후와후와~ 퓨어퓨어~ 미라크루~뀽🤍 오므라이스상 오이시꾸나렝 키땅~🤍" },
+    { image: "assets/LEVEL9_도르핀볼.png", title: "도르핀볼", description: "[레벨 10 달성 보상] 지금 도르핀과 시청자들은 도파민 한계치 도달! 나만 아니면 돼 ~~!" },
+    { image: "assets/LEVEL10_나작버 도르핀.png", title: "나작버 도르핀", description: "[레벨 11 달성 보상] 도르핀은 [나작버 첫 예능 전형]으로 출현하였다. 명대사로는 [아 근데 제가 검정색에서 조금 더 얼굴이 잘 받는 편이라..], [제가 3분할 할 줄을 몰라요..!] 등이 있다. " },
+    { image: "assets/LEVEL11_로나월드 도르핀.png", title: "로나월드 도르핀", description: "[레벨 12 달성 보상] 마인크래프트 서버 로나월드로 입주한 도르핀" },
+    { image: "assets/LEVEL12_슈퍼스타 도르핀.png", title: "슈퍼스타 도르핀", description: "[최종 보상] 영원한 나의 슈퍼스타, 도르핀." },
     // 나머지 컬렉션 데이터 추가
 ];
 
@@ -579,6 +579,9 @@
         }
 
         function handleClick(amount, message) {
+            updateCharacterImage();
+
+
             clicks += amount;
             showOverlayMessage(message);
             updateProgressBar();
