@@ -4,7 +4,7 @@
     "start_url": "/raisedorrfin.html",
     "display": "standalone",
     "theme_color": "#000000",
-    "background_color": "#ffffff",
+    "background_color": "#000000",
     "icons": [
       {
         "src": "./assets/icon-192x192.png",
