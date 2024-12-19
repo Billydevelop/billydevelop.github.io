@@ -1,7 +1,7 @@
 {
     "name": "도르핀 키우기 - 100일 축하해",
     "short_name": "도르핀 키우기",
-    "start_url": "./",
+    "start_url": "/",
     "display": "standalone",
     "theme_color": "#000000",
     "background_color": "#ffffff",
