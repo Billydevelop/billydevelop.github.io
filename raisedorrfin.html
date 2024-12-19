@@ -521,6 +521,14 @@
 
 
     <script>
+
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('custom-splash').style.display = 'none';
+                document.getElementById('game-container').style.display = 'block';
+            }, 2000); // 2초 후 전환
+        });
+        
         setTimeout(() => {
             const splash = document.getElementById('custom-splash');
             splash.classList.add('fade-out');
