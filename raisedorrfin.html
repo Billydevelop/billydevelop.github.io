@@ -121,6 +121,7 @@
 
         /* 게임 컨테이너 */
         .game-container {
+            display: none;
             width: 450px;
             border-radius:20px;
             text-align: center;
@@ -132,6 +133,25 @@
             0 0 4px #dee9f19c, 0 0 5px #dee9f19c, 0 0 6px #dee9f19c, 0 0 7px #dee9f19c,
             0 0 8px #dee9f19c, 0 0 9px #dee9f19c, 0 0 10px #dee9f19c;
         }
+
+
+                /* 스플래시 스타일 */
+        #custom-splash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000 url('/path/to/splash-image.png') no-repeat center center;
+            background-size: cover;
+            z-index: 9999;
+        }
+
+        #custom-splash.fade-out {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
 
         /* 플레이어 정보 컨테이너 */
         .header-info {
@@ -385,6 +405,10 @@
     </style>
 </head>
 <body>
+
+        <!-- 커스텀 스플래시 화면 -->
+    <div id="custom-splash"></div>
+
     <!-- 게임 컨테이너 -->
     <div class="game-container">
         <div class="header-container">
@@ -497,7 +521,15 @@
 
 
     <script>
+        setTimeout(() => {
+            const splash = document.getElementById('custom-splash');
+            splash.classList.add('fade-out');
+            setTimeout(() => splash.style.display = 'none', 500); // 0.5초 후 제거
+            document.getElementById('game-container').style.display = 'block';
+        }, 2000);
 
+
+        
         let lastTouchEnd = 0;
         document.addEventListener('touchend', (event) => {
             const now = Date.now();
