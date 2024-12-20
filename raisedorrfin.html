@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="manifest" href="/mainifest.json">
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>도르핀 키우기 - 버츄얼 스트리머 도르핀과 함께하는 클릭 게임</title>
+    <!-- 기본 메타 태그 -->
+    <meta name="description" content="도르핀 키우기는 인기 버츄얼 스트리머 '도르핀'을 키우는 웹게임입니다. 클릭으로 레벨업하고 새로운 컬렉션과 도르핀의 다양한 모습을 만나보세요.">
+    <meta name="keywords" content="도르핀, 버츄얼 스트리머, 숲 스트리밍, BJ, 도르핀 키우기, 클릭 게임, 버츄얼 유튜버, 키우기 게임, 웹게임">
+    <meta name="author" content="도르핀반려견">
+
+    <!-- Open Graph (OG) 메타 태그 -->
+    <meta property="og:title" content="도르핀 키우기 - 버츄얼 스트리머와 함께 성장하는 게임">
+    <meta property="og:description" content="도르핀 키우기: 클릭으로 도르핀을 성장시키고 다양한 모습과 컬렉션을 수집하세요! 버츄얼 스트리머 도르핀과 함께 재미있는 시간을 가져보세요.">
+    <meta property="og:image" content="metaAssets/Open Graph (OG).png"> <!-- OG 이미지 -->
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://billydevelop.github.io/dorrfinworld.html">
+    <meta property="og:type" content="website">
+
+
+    <!-- Twitter Card 메타 태그 -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="도르핀 키우기 - 버츄얼 스트리머 도르핀 게임">
+    <meta name="twitter:description" content="도르핀 키우기 게임에서 인기 버츄얼 스트리머 도르핀과 함께 성장해보세요! 클릭과 컬렉션을 통해 다양한 도르핀을 만나볼 수 있습니다.">
+    <meta name="twitter:image" content="metaAssets/Twitter Summary Card(large).png"> <!-- 큰 이미지 카드 -->
+    <meta name="twitter:image" content="metaAssets/Twitter Summary Card.png"> <!-- 작은 이미지 카드 -->
+
+    <!-- 파비콘 -->
+    <link rel="icon" href="metaAssets/파비콘 (Favicon).png" type="image/png"> 
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 440px) and (device-height: 956px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="splash_screens/iPhone_16_Pro_Max_landscape.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="splash_screens/iPhone_16_Pro_landscape.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="splash_screens/iPhone_16_Plus__iPhone_15_Pro_Max__iPhone_15_Plus__iPhone_14_Pro_Max_landscape.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="splash_screens/iPhone_16__iPhone_15_Pro__iPhone_15__iPhone_14_Pro_landscape.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="splash_screens/iPhone_14_Plus__iPhone_13_Pro_Max__iPhone_12_Pro_Max_landscape.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="splash_screens/iPhone_14__iPhone_13_Pro__iPhone_13__iPhone_12_Pro__iPhone_12_landscape.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="splash_screens/iPhone_13_mini__iPhone_12_mini__iPhone_11_Pro__iPhone_XS__iPhone_X_landscape.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="splash_screens/iPhone_11_Pro_Max__iPhone_XS_Max_landscape.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="splash_screens/iPhone_11__iPhone_XR_landscape.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="splash_screens/iPhone_8_Plus__iPhone_7_Plus__iPhone_6s_Plus__iPhone_6_Plus_landscape.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="splash_screens/iPhone_8__iPhone_7__iPhone_6s__iPhone_6__4.7__iPhone_SE_landscape.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="splash_screens/4__iPhone_SE__iPod_touch_5th_generation_and_later_landscape.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 1032px) and (device-height: 1376px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="splash_screens/13__iPad_Pro_M4_landscape.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="splash_screens/12.9__iPad_Pro_landscape.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1210px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="splash_screens/11__iPad_Pro_M4_landscape.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="splash_screens/11__iPad_Pro__10.5__iPad_Pro_landscape.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 820px) and (device-height: 1180px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="splash_screens/10.9__iPad_Air_landscape.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="splash_screens/10.5__iPad_Air_landscape.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="splash_screens/10.2__iPad_landscape.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="splash_screens/9.7__iPad_Pro__7.9__iPad_mini__9.7__iPad_Air__9.7__iPad_landscape.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 744px) and (device-height: 1133px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="splash_screens/8.3__iPad_Mini_landscape.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 440px) and (device-height: 956px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splash_screens/iPhone_16_Pro_Max_portrait.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splash_screens/iPhone_16_Pro_portrait.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splash_screens/iPhone_16_Plus__iPhone_15_Pro_Max__iPhone_15_Plus__iPhone_14_Pro_Max_portrait.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splash_screens/iPhone_16__iPhone_15_Pro__iPhone_15__iPhone_14_Pro_portrait.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splash_screens/iPhone_14_Plus__iPhone_13_Pro_Max__iPhone_12_Pro_Max_portrait.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splash_screens/iPhone_14__iPhone_13_Pro__iPhone_13__iPhone_12_Pro__iPhone_12_portrait.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splash_screens/iPhone_13_mini__iPhone_12_mini__iPhone_11_Pro__iPhone_XS__iPhone_X_portrait.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splash_screens/iPhone_11_Pro_Max__iPhone_XS_Max_portrait.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="splash_screens/iPhone_11__iPhone_XR_portrait.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splash_screens/iPhone_8_Plus__iPhone_7_Plus__iPhone_6s_Plus__iPhone_6_Plus_portrait.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="splash_screens/iPhone_8__iPhone_7__iPhone_6s__iPhone_6__4.7__iPhone_SE_portrait.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="splash_screens/4__iPhone_SE__iPod_touch_5th_generation_and_later_portrait.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 1032px) and (device-height: 1376px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="splash_screens/13__iPad_Pro_M4_portrait.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="splash_screens/12.9__iPad_Pro_portrait.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1210px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="splash_screens/11__iPad_Pro_M4_portrait.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="splash_screens/11__iPad_Pro__10.5__iPad_Pro_portrait.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 820px) and (device-height: 1180px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="splash_screens/10.9__iPad_Air_portrait.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="splash_screens/10.5__iPad_Air_portrait.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="splash_screens/10.2__iPad_portrait.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="splash_screens/9.7__iPad_Pro__7.9__iPad_mini__9.7__iPad_Air__9.7__iPad_portrait.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 744px) and (device-height: 1133px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="splash_screens/8.3__iPad_Mini_portrait.png">
+    
+    
+
+    <style>
+        /* 기본 스타일 */
+/* 전체 배경 설정 */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(180deg, #004B75 0%, #041C2C 100%);
+            color: #ffffff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+                /* 헤더 전체 컨테이너 */
+        .header-container {
+            display: flex; /* 플렉스 박스를 사용 */
+            justify-content: space-between; /* 양 끝으로 정렬 */
+            margin:8px;
+            align-items: center; /* 수직 정렬 */
+            background-color: #1f2937; /* 헤더 배경색 */
+            padding: 20px; /* 여백 추가 */
+            border-bottom: 2px solid #374151; /* 하단 테두리 */
+        }
+
+        /* 로고 스타일 */
+        .logo-container .game-logo {
+            width: 150px; /* 로고 크기 */
+            height: auto;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3)); /* 그림자 효과 */
+            animation: float 3s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* 버튼 컨테이너 */
+        .button-container {
+            display: flex;
+            gap: 10px; /* 버튼 간격 */
+        }
+
+        /* 버튼 스타일 */
+        .header-btn {
+            background: #00e0e7; /* 버튼 색상 */
+            color: white; /* 텍스트 색상 */
+            border: none; /* 테두리 제거 */
+            border-radius: 5px; /* 둥근 모서리 */
+            padding: 8px 15px; /* 버튼 패딩 */
+            cursor: pointer; /* 마우스 오버 시 커서 변경 */
+            font-size: 0.74rem;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .header-btn:hover {
+            background-color: #0495a8; /* 호버 효과 */
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+
+        ::-webkit-scrollbar.button {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            background: rgba(230, 230, 230, 0.3);
+            -webkit-transition: all .2s;
+            transition: all .2s;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        /* 게임 컨테이너 */
+        .game-container {
+            width: 450px;
+            border-radius:20px;
+            text-align: center;
+            background-color: #1f2937;
+            margin:8px;
+            border-bottom: 2px solid #374151;
+            margin-bottom: 20px;
+            box-shadow: 0 0 1px #dee9f19c, 0 0 2px #dee9f19c, 0 0 3px #dee9f19c,
+            0 0 4px #dee9f19c, 0 0 5px #dee9f19c, 0 0 6px #dee9f19c, 0 0 7px #dee9f19c,
+            0 0 8px #dee9f19c, 0 0 9px #dee9f19c, 0 0 10px #dee9f19c;
+        }
+
+        /* 게임 컨테이너 초기 숨기기 */
+        #game-container {
+            display: none;
+        }
+
+                /* 스플래시 스타일 */
+        #custom-splash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000 no-repeat center center;
+            background-size: cover;
+            z-index: 9999;
+        }
+        
+        /* 모바일 화면 */
+        @media (max-width: 768px) {
+            #custom-splash {
+                background-image: url('/assets/splash-screen2.png');
+            }
+        }
+
+        /* 태블릿 화면 */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            #custom-splash {
+                background-image: url('/assets/splash-screen(tablet).png');
+            }
+        }
+
+        /* 데스크탑 화면 */
+        @media (min-width: 1025px) {
+            #custom-splash {
+                background-image: url('/assets/splash-screen(PC).png');
+            }
+        }
+
+
+
+        #custom-splash.fade-out {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+
+        /* 플레이어 정보 컨테이너 */
+        .header-info {
+            background: linear-gradient(to right, #2c3e50, #b7d8dd);
+            border-radius: 15px;
+            padding: 6px;
+            width: 90%;
+            margin: 20px auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #f9fafb;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+        }
+
+        /* 캐릭터 이미지 */
+        .character-box {
+            position: relative;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .character-box img {
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+            animation: float 3s infinite ease-in-out;
+        }
+
+
+
+
+
+
+        @keyframes float {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-10px); }
+        }
+        /* 클릭 수 증가 시 효과 (부드럽게 커지기) */
+    
+    
+        @keyframes grow {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .grow-effect {
+            animation: grow 0.5s ease-in-out;
+        }
+
+        /* 클릭 수 감소 시 효과 (흔들리기) */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        .shake-effect {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        /* 공통 호버 효과 */
+        .hover-effect {
+            filter: brightness(1.2);
+            transition: filter 0.2s;
+        }
+
+
+
+
+
+
+
+        
+        /* 경험치 Progress Bar */
+        .progress-container {
+            border: 0.4px dashed #ffffff;
+            width: 80%;
+            margin: 20px auto;
+            background: linear-gradient(to right, #2c3e50, #979797);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 20px;
+            background: linear-gradient(to right, #2c3e50, #5699a3);
+            text-align: center;
+            line-height: 20px;
+            font-size: 0.9rem;
+            color: white;
+        }
+
+
+        /* 오버레이 메시지 */
+        .overlay-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            display: none;
+        }
+
+        /* 버튼 */
+        .button-group {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            gap: 10px;
+            margin-bottom: 10px;
+            touch-action: manipulation; /* 터치 확대 방지 */
+        }
+
+        .button-group button {
+            background-color: #1ed3eb;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+
+        .button-group button.orange {
+            background-color: #363500;
+            font-weight: bold;
+        }
+        
+        .button-group button.red {
+            background-color: #6e0404;
+            font-weight: bold;
+        }
+
+        /* 컬렉션 영역 */
+        .collection-container {
+            width: 450px;
+            position:sticky;
+            background-color: #1f2937;
+            flex: 1;
+            overflow-y: auto;
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 0 1px #dee9f19c, 0 0 2px #dee9f19c, 0 0 3px #dee9f19c,
+            0 0 4px #dee9f19c, 0 0 5px #dee9f19c, 0 0 6px #dee9f19c, 0 0 7px #dee9f19c,
+            0 0 8px #dee9f19c, 0 0 9px #dee9f19c, 0 0 10px #dee9f19c;
+        }
+        
+        .collection-header {
+            position: sticky;
+            top: 0;
+            background-color: #374151;
+            padding: 10px;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        .collection-box {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            padding: 10px;
+        }
+
+        .collection-item {
+            background: #4b5563;
+            border-radius: 5px;
+            width: 130px;
+            height: 130px;
+            max-width:350px;
+            max-height:350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 0 1px #dee9f19c, 0 0 2px #dee9f19c, 0 0 3px #dee9f19c,
+            0 0 4px #dee9f19c, 0 0 5px #dee9f19c, 0 0 6px #dee9f19c, 0 0 7px #dee9f19c,
+            0 0 8px #dee9f19c, 0 0 9px #dee9f19c, 0 0 10px #dee9f19c;
+        }
+
+        /* 모달창 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .modal-content {
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            box-shadow: 0 8px 16px -3px #ffffff;
+        }
+
+        .modal-content input {
+            background: transparent;
+            padding: 5px;
+            margin-bottom: 10px;
+            color: #1ed3eb;
+            box-shadow: 0 2px 4px -1px #ffffff;
+        }
+
+        .modal-content button{
+            background-color: #1ed3eb;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .options button {
+            margin: 5px;
+            padding: 10px 15px;
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .options button:disabled {
+            background-color: #6b7280;
+            cursor: not-allowed;
+        }
+
+    @media screen and (max-width: 768px) {
+    .game-container {
+        width: 100%; /* 모바일에서는 전체 너비로 */
+        padding-left: 10px; /* 여백 줄이기 */
+        padding-right: 10px; /* 여백 줄이기 */
+    }
+}
+
+    </style>
+</head>
+<body>
+
+        <!-- 커스텀 스플래시 화면 -->
+    <div id="custom-splash"></div>
+
+    <!-- 게임 컨테이너 -->
+    <div class="game-container">
+        <div class="header-container">
+            <!-- 로고 이미지 -->
+            <div class="logo-container">
+                <img src="./assets/LOGO.png" alt="도르핀 키우기 로고" class="game-logo">
+            </div>
+            <!-- 우측 버튼 -->
+            <div class="button-container">
+                <button class="header-btn" id="bgm-toggle-btn" onclick="toggleBGM()">🎵 </button>
+                <button class="header-btn" onclick="location.href='https://ch.sooplive.co.kr/333333333327' ">📺SOOP</button>
+            </div>
+
+
+
+        </div>
+        <div class="header-info" id="player-info">
+            플레이어명 | 레벨: 1 | 경험치: 0/100
+            </div>
+        <div class="button-group">
+            <button onclick="openPinballModal()">도르 핀볼</button>
+            
+        </div>
+
+
+        
+        <div class="character-box">
+            <img id="character-img" src="./assets/LEVEL1-테스트방송 도르핀.png" alt="캐릭터">
+            <div id="overlay-msg" class="overlay-message"></div>
+        </div>
+
+        <div class="progress-container">
+            <div id="progress-bar" class="progress-bar" style="width: 0%;">0%</div>
+        </div>
+        <div id="collection-info" style="text-align: center; margin: 10px; color: #f9fafb;">
+            <!-- 컬렉션 클릭 시 제목과 설명이 여기에 표시됩니다 -->
+        </div>
+        <div class="button-group">
+            <button onclick="handleClick(1, '르핀이는 행복해!')">채팅/칭찬</button>
+            <button onclick="handleClick(1, '복어단이 최고야!')">통나무 들기</button>
+            <button class="orange" onclick="handleClick(-1, '미워!')">고로시</button>
+            <button class="red" onclick="resetGame()">바람피기</button>
+        </div>
+    </div>
+
+    <!-- 컬렉션 영역 -->
+    <div class="collection-container">
+        <div class="collection-header">
+            컬렉션 <span id="collection-count">(0/12)</span>
+        </div>
+        <div id="collection-box" class="collection-box"></div>
+    </div>
+
+    <!-- 모달 -->
+    <div id="name-modal" class="modal">
+        <div class="modal-content">
+            <h3>플레이어 이름 입력</h3>
+            <input type="text" id="player-name" placeholder="이름 입력 (최대 10자)" maxlength="10">
+            <button onclick="startGame()">시작하기</button>
+        </div>
+    </div>
+
+        <!-- 커스텀 알림 모달 -->
+    <div id="alert-modal" class="modal">
+        <div class="modal-content">
+            <p id="alert-message">메시지 내용</p>
+            <button onclick="closeAlertModal()">확인</button>
+        </div>
+    </div>
+
+    <!-- 커스텀 확인 모달 -->
+    <div id="confirm-modal" class="modal">
+        <div class="modal-content">
+            <p id="confirm-message">정말 초기화 하시겠습니까?</p>
+            <button id="confirm-yes" onclick="confirmYes()">확인</button>
+            <button onclick="closeConfirmModal()">취소</button>
+        </div>
+    </div>
+
+
+        <!-- 도르핀 핀볼 게임 모달 -->
+    <div id="pinball-modal" class="modal">
+        <div class="modal-content">
+            <!-- 핀볼 이미지와 설명 -->
+            <img src="./assets/LOGO.png" alt="도르핀 핀볼" style="width: 100%; height: auto;">
+            <p>클릭 수를 걸고 핀볼 게임에 도전하세요!<br> 승리 시 클릭 수 2배 획득, 패배 시 차감됩니다.</p>
+            <h3>내 경험치: <span id="player-clicks"></span></h3>
+            
+            <!-- 옵션 선택 버튼 -->
+            <div class="options">
+                <button class="pinball-option" data-option="100">100</button>
+                <button class="pinball-option" data-option="500">500</button>
+                <button class="pinball-option" data-option="1000">1,000</button>
+                <button class="pinball-option" data-option="3000">3,000</button>
+                <button class="pinball-option" data-option="10000">10,000</button>
+            </div>
+            <button onclick="closePinballModal()">닫기</button>
+        </div>
+    </div>
+
+    <!-- 핀볼 게임 진행 화면 -->
+    <div id="pinball-game" class="modal">
+        <div class="modal-content">
+            <h3>🎱도르 핀볼 멸망전🎱</h3>
+            <canvas id="pinball-canvas" width="300" height="500"></canvas>
+            <p id="pinball-result"></p>
+            <button onclick="closePinballGame()">확인</button>
+        </div>
+    </div>
+
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const isPWA = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+
+            if (isPWA) {
+                // 홈 화면에 추가된 경우 (PWA 실행)
+                document.getElementById('custom-splash').style.display = 'none'; // 커스텀 스플래시 숨기기
+            } else {
+                // 브라우저에서 실행
+                setTimeout(() => {
+                    document.getElementById('custom-splash').style.display = 'none';
+                    document.getElementById('game-container').style.display = 'block';
+                }, 4000); // 4초 후 스플래시 제거
+            }
+        });
+
+
+        window.addEventListener('load', () => {
+                    setTimeout(() => {
+                        document.getElementById('custom-splash').style.display = 'none';
+                        document.getElementById('game-container').style.display = 'block';
+                    }, 4000); // 4초 후 전환
+                });
+
+        setTimeout(() => {
+            const splash = document.getElementById('custom-splash');
+            splash.classList.add('fade-out');
+            setTimeout(() => splash.style.display = 'none', 500); // 0.5초 후 제거
+            document.getElementById('game-container').style.display = 'block';
+        }, 4000); // 4초 후 전환
+
+
+        
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', (event) => {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) { // 더블 탭 시간 간격 체크
+                event.preventDefault(); // 기본 확대 동작 방지
+            }
+            lastTouchEnd = now;
+        }, false);
+
+
+
+        function updateProgressBar() {
+            const progressBar = document.getElementById("progress-bar");
+            const currentLevelTarget = levels[level - 1]; // 현재 레벨 목표 클릭 수
+            const previousLevelTarget = level > 1 ? levels[level - 2] : 0; // 이전 레벨 목표 클릭 수 (첫 레벨은 0)
+
+            // 진행률 계산
+            const progressPercentage = ((clicks - previousLevelTarget) / (currentLevelTarget - previousLevelTarget)) * 100;
+
+            // 프로그래스 바 스타일 업데이트
+            progressBar.style.width = `${Math.min(progressPercentage, 100)}%`;
+            progressBar.innerText = `${Math.min(Math.floor(progressPercentage), 100)}%`; // 소수점 제거 후 텍스트로 표시
+        }
+
+
+        let clicks = 0, level = 1, collections = [];
+        const levels = [100, 200, 400, 800, 1600, 3200, 6400, 12800, 25600, 50000, 100000, 1000000];
+        const totalCollections = 12;
+        
+        const characterImages = [
+            "assets/LEVEL1-테스트방송 도르핀.png",
+            "assets/LEVEL2_1세대 도르핀 싱드컵.png",
+            "assets/LEVEL3_2세대 도르핀.png",
+            "assets/LEVEL4_루키존 도르핀.png",
+            "assets/LEVEL5_피코파크 도르핀.png",
+            "assets/LEVEL6_3세대 도르핀.png",
+            "assets/LEVEL7_할로윈 도르핀.png",
+            "assets/LEVEL8_킷땅 도르핀.png",
+            "assets/LEVEL9_도르핀볼.png",
+            "assets/LEVEL10_나작버 도르핀.png",
+            "assets/LEVEL11_로나월드 도르핀.png",
+            "assets/LEVEL12_슈퍼스타 도르핀.png",
+        ];
+
+        const collectionData = [
+    { image: "assets/LEVEL1-테스트방송 도르핀.png", title: "테스트방송 도르핀", description: "[레벨 2 달성 보상] 도르핀이는 응애야! 방송은 어떻게 하는걸까? 걱정이 많다.. 일단 틀어보자.." },
+    { image: "assets/LEVEL2_1세대 도르핀 싱드컵.png", title: "1세대 도르핀 싱드컵", description: "[레벨 3 달성 보상] 도르핀의 기원! 괴물이 피는 숲으로 싱드컵에 출현하여 말 그대로 [괴물 신입]으로 많은 관심을 받았다." },
+    { image: "assets/LEVEL3_2세대 도르핀.png", title: "2세대 도르핀", description: "[레벨 4 달성 보상] SOOP(당시 아프리카) 이적 완료, 여담으로 도르핀은 SOOP 테스트 방송에서 50두산을 받았으며 치지직 식구 다 버리고 오면 100두산 및 회장을 보장하겠다 제안 받았지만 거절하여 시청자와의 의리를 지켰다." },
+    { image: "assets/LEVEL4_루키존 도르핀.png", title: "루키존 도르핀", description: "[레벨 5 달성 보상] 도르핀은 SOOP 이적 1주일 만에 루키존이 되었다. 심지어 [SOOP 데뷔 전 아무 생각 없이 루키존을 신청하였다.] 라고 밝혔다." },
+    { image: "assets/LEVEL5_피코파크 도르핀.png", title: "피코파크 도르핀", description: "[레벨 6 달성 보상] 데뷔 초기 도르핀은 뉴걸들과 함께 피코파크 합방을 진행하였다. 피코파크 멤버들이 모두 잘되자 팬들 사이에서는 [피코파크 멤버에 뭐가 있는게 아니냐] 라는 말이 나오고 있다." },
+    { image: "assets/LEVEL6_3세대 도르핀.png", title: "3세대 도르핀", description: "[레벨 7 달성 보상] 현재 도르핀의 기본 베이스로 1세대(VRoid), 2세대(찰흙)과는 다르게 극찬을 받았다. 이쁘다 이뻐!" },
+    { image: "assets/LEVEL7_할로윈 도르핀.png", title: "할로윈 도르핀", description: "[레벨 8 달성 보상] 이미지를 구하지 못했습니다." },
+    { image: "assets/LEVEL8_킷땅 도르핀.png", title: "킷땅 도르핀", description: "[레벨 9 달성 보상]미테테네~ 콘나 칸지데!  후와후와~ 퓨어퓨어~ 미라크루~뀽🤍 오므라이스상 오이시꾸나렝 키땅~🤍" },
+    { image: "assets/LEVEL9_도르핀볼.png", title: "도르핀볼", description: "[레벨 10 달성 보상] 지금 도르핀과 시청자들은 도파민 한계치 도달! 나만 아니면 돼 ~~!" },
+    { image: "assets/LEVEL10_나작버 도르핀.png", title: "나작버 도르핀", description: "[레벨 11 달성 보상] 도르핀은 [나작버 첫 예능 전형]으로 출현하였다. 명대사로는 [아 근데 제가 검정색에서 조금 더 얼굴이 잘 받는 편이라..], [제가 3분할 할 줄을 몰라요..!] 등이 있다. " },
+    { image: "assets/LEVEL11_로나월드 도르핀.png", title: "로나월드 도르핀", description: "[레벨 12 달성 보상] 마인크래프트 서버 로나월드로 입주한 도르핀" },
+    { image: "assets/LEVEL12_슈퍼스타 도르핀.png", title: "슈퍼스타 도르핀", description: "[최종 보상] 영원한 나의 슈퍼스타, 도르핀." },
+    // 나머지 컬렉션 데이터 추가
+];
+
+
+        let playerName = '';
+
+
+        window.onload = () => {
+            loadGame();
+            if (!playerName) {
+                showModal('name-modal'); // 플레이어명이 없으면 모달창 표시
+            } else {
+                updatePlayerInfo();
+                updateCharacterImage();
+                updateProgressBar();
+                updateCollection();
+            }
+        };
+
+
+        // 캐릭터 이미지 교체 함수
+        function updateCharacterImage() {
+            document.getElementById("character-img").src = characterImages[level - 1];
+            document.getElementById("collection-info").innerHTML = ""; // 텍스트 초기화
+        }
+        
+        
+
+        function startGame() {
+            const input = document.getElementById('player-name').value.trim();
+            if (!input) return alert('이름을 입력해주세요!');
+
+            playerName = input; // 입력된 이름 저장
+            localStorage.setItem('playerName', playerName); // 로컬스토리지에 저장
+            
+            hideModal('name-modal');
+            updatePlayerInfo();
+            saveGame();
+        }
+
+        function handleClick(amount, message) {
+            updateCharacterImage();
+
+
+            clicks += amount;
+            showOverlayMessage(message);
+            updateProgressBar();
+            checkLevelUp();
+            updatePlayerInfo(); // 플레이어 정보 업데이트
+            saveGame(); // 로컬스토리지에 저장
+
+            // 캐릭터 이미지에 효과 적용
+            const characterImg = document.getElementById("character-img");
+
+            // 기존 클래스 제거
+            characterImg.classList.remove('grow-effect', 'shake-effect');
+
+            // 조건에 따라 클래스 추가
+            if (amount > 0) {
+                characterImg.classList.add('grow-effect'); // 클릭 수 증가 시
+            } else {
+                characterImg.classList.add('shake-effect'); // 클릭 수 감소 시
+            }
+
+            // 애니메이션이 끝나면 클래스 제거 (0.5초 후)
+            setTimeout(() => {
+                characterImg.classList.remove('grow-effect', 'shake-effect');
+            }, 500);
+            }
+
+            
+            document.querySelectorAll('.button-group button').forEach(button => {
+                button.addEventListener('mouseenter', () => {
+                    const characterImg = document.getElementById("character-img");
+                    characterImg.classList.add('hover-effect');
+                });
+
+                button.addEventListener('mouseleave', () => {
+                    const characterImg = document.getElementById("character-img");
+                    characterImg.classList.remove('hover-effect');
+                });
+            });
+
+
+
+
+    
+
+        function showOverlayMessage(message) {
+            const overlay = document.getElementById('overlay-msg');
+            overlay.innerText = message;
+            overlay.style.display = 'block';
+            setTimeout(() => { overlay.style.display = 'none'; }, 1000);
+        }
+
+        function checkLevelUp() {
+            if (clicks >= levels[level - 1]) {
+                level++;
+        // 신규 컬렉션 지급
+            const newCollectionImage = collectionData[level - 2];
+            collections.push(newCollectionImage);
+            updateCharacterImage();
+            updateCollection();
+            showAlert(`레벨업! 현재 레벨: ${level}`);
+        }
+
+            updateProgressBar(); // 레벨업 후 프로그래스 바 업데이트
+            updatePlayerInfo();
+            saveGame();
+                }
+
+        function updatePlayerInfo() {
+            const playerName = localStorage.getItem('playerName') || '플레이어';
+            document.getElementById('player-info').innerText = 
+                `${playerName} | 레벨: ${level} | 경험치: ${clicks}/${levels[level - 1]}`;
+        }
+        
+// 컬렉션 영역 업데이트
+function updateCollection() {
+    const box = document.getElementById('collection-box');
+    box.innerHTML = '';
+
+    collections.forEach((collection) => {
+        const div = document.createElement('div');
+        div.className = 'collection-item';
+        div.style.backgroundImage = `url('${collection.image}')`;
+        div.style.backgroundSize = 'cover';
+        div.style.backgroundPosition = 'center';
+
+        // 클릭 시 이미지와 제목/설명 표시
+        div.onclick = () => {
+            document.getElementById("character-img").src = collection.image;
+            document.getElementById("collection-info").innerHTML = 
+                `<h3>${collection.title}</h3><p>${collection.description}</p>`;
+        };
+        box.appendChild(div);
+    });
+
+    document.getElementById('collection-count').innerText = `(${collections.length}/12)`;
+}
+
+
+
+
+
+        function resetGame() {
+            showConfirm('정말 초기화 하시겠습니까?', () => {
+                clicks = 0; level = 1; collections = [];
+                playerName= "";//플레이어명 초기화화
+                
+                // 로컬스토리지 초기화
+                localStorage.removeItem('gameState');
+                localStorage.removeItem('playerName');
+                
+                // 페이지 리로드
+                showAlert('게임이 초기화되었습니다.');
+                location.reload(); // 페이지 새로고침
+            });
+        }
+
+
+        function saveGame() {
+    localStorage.setItem('gameState', JSON.stringify({
+        playerName: playerName,
+        clicks: clicks,
+        level: level,
+        collections: collections
+    }));
+}
+
+
+        function loadGame() {
+            const savedData = JSON.parse(localStorage.getItem('gameState'));
+            if (savedData) {
+                playerName = savedData.playerName || '';
+                clicks = savedData.clicks || 0;
+                level = savedData.level || 1;
+                collections = savedData.collections || [];
+            } else {
+                playerName = ""; // 저장된 데이터가 없으면 초기화
+            }
+            
+            if (!playerName) {
+                showModal('name-modal'); // 플레이어명이 없으면 모달 표시
+            } else {
+                updatePlayerInfo();
+                updateCollection();
+                updateCharacterImage();
+                updateProgressBar();
+            }
+        }
+
+
+
+        ///모달창
+
+        function showModal(id) { document.getElementById(id).style.display = 'flex'; }
+        function hideModal(id) { document.getElementById(id).style.display = 'none'; }
+
+
+        function showAlert(message) {
+            const alertMessage = document.getElementById('alert-message');
+            alertMessage.innerText = message; // 메시지 설정
+            document.getElementById('alert-modal').style.display = 'flex';
+        }
+
+        function closeAlertModal() {
+            document.getElementById('alert-modal').style.display = 'none';
+        }
+
+        let confirmCallback = null; // 확인 버튼 클릭 시 실행할 콜백 함수
+
+        function showConfirm(message, callback) {
+            const confirmMessage = document.getElementById('confirm-message');
+            confirmMessage.innerText = message; // 메시지 설정
+            confirmCallback = callback; // 콜백 함수 저장
+            document.getElementById('confirm-modal').style.display = 'flex';
+        }
+
+        function confirmYes() {
+            if (confirmCallback) confirmCallback(); // 확인 버튼 클릭 시 콜백 실행
+            closeConfirmModal();
+        }
+
+        function closeConfirmModal() {
+            document.getElementById('confirm-modal').style.display = 'none';
+        }
+
+
+
+
+        
+
+                // 배경음악 설정
+        const bgm = new Audio("assets/background-music.mp3");
+        bgm.loop = true; // 반복 재생
+        let isBgmPlaying = false;
+
+        // 버튼 사운드 효과 설정
+        const hoverSound1 = new Audio("assets/header-btn-hover.mp3");
+        const clickSound1 = new Audio("assets/header-btn.mp3");
+        const hoverSound = new Audio("assets/+1button-btn-hover.mp3");
+        const clickSound = new Audio("assets/+1button-btn.mp3");
+
+        // BGM 토글 함수
+        function toggleBGM() {
+            const bgmButton = document.getElementById("bgm-toggle-btn");
+            if (isBgmPlaying) {
+                bgm.pause();
+                bgmButton.innerText = "🎵";
+            } else {
+                bgm.play();
+                bgmButton.innerText = "🔇";
+            }
+            isBgmPlaying = !isBgmPlaying; // 상태 변경
+        }
+
+        // 버튼 사운드 효과 부여
+        document.querySelectorAll('.header-btn').forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                hoverSound1.currentTime = 0; // 시작점으로 리셋
+                hoverSound1.play();
+            });
+
+            button.addEventListener('click', () => {
+                clickSound1.currentTime = 0; // 시작점으로 리셋
+                clickSound1.play();
+            });
+        });
+
+        // handleClick 버튼에도 효과 추가
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                hoverSound.currentTime = 0;
+                hoverSound.play();
+            });
+
+            button.addEventListener('click', () => {
+                clickSound.currentTime = 0;
+                clickSound.play();
+            });
+        });
+
+
+                // handleClick 버튼에도 효과 추가
+                document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                hoverSound.currentTime = 0;
+                hoverSound.play();
+            });
+
+            button.addEventListener('click', () => {
+                clickSound.currentTime = 0;
+                clickSound.play();
+            });
+        });
+
+
+    //도르핀볼
+
+
+
+    const playerBallWins = 0.3; // 플레이어 승리 확률
+    let selectedOption = 0; // 선택한 핀볼 옵션
+
+        // 핀볼 모달 열기
+        function openPinballModal() {
+            document.getElementById('player-clicks').innerText = clicks; // 현재 클릭 수 표시
+            updatePinballOptions();
+            showModal('pinball-modal'); // 모달 열기
+        }
+
+        // 옵션 활성화/비활성화 및 이벤트 리스너 설정
+        function updatePinballOptions() {
+            document.querySelectorAll('.pinball-option').forEach(button => {
+                const optionValue = parseInt(button.getAttribute('data-option'), 10);
+                button.disabled = clicks < optionValue; // 클릭 수 부족 시 비활성화
+
+                // 기존 이벤트 제거 후 새 이벤트 추가
+                button.onclick = () => {
+                    if (clicks >= optionValue) {
+                        selectedOption = optionValue; // 선택한 옵션 저장
+                        startPinballGame();
+                    } else {
+                        alert("클릭 수가 부족합니다!");
+                    }
+                };
+            });
+        }
+
+
+        // 핀볼 게임 시작
+        function startPinballGame(optionValue) {
+            closeModal('pinball-modal'); // 옵션 모달 닫기
+            showModal('pinball-game'); // 핀볼 게임 화면 표시           
+
+            document.getElementById('pinball-result').innerText = "게임 진행 중...";
+
+
+            setTimeout(() => {
+        const result = Math.random() < playerBallWins ? 'win' : 'lose'; // 승리 확률 판정
+        processPinballResult(result);
+    }, 1500); // 1.5초 딜레이 후 결과 표시
+}
+
+        // 핀볼 결과 처리
+        function processPinballResult(result) {
+            let resultText = "";
+            if (result === 'win') {
+                clicks += selectedOption * 2; // 승리 시 클릭 수 2배 추가
+                resultText = `승리! +${selectedOption * 2} 경험치`;
+            } else {
+                clicks -= selectedOption; // 패배 시 클릭 수 차감
+                resultText = `패배... -${selectedOption} 경험치`;
+            }
+
+            // 결과 반영
+            document.getElementById('pinball-result').innerText = resultText;
+            updatePlayerInfo(); // UI 업데이트
+            saveGame(); // 게임 상태 저장
+        }
+
+        function closePinballGame() {
+            document.getElementById('pinball-game').style.display = 'none';
+        }
+
+        function closePinballModal() {
+            document.getElementById('pinball-modal').style.display = 'none';
+        }
+
+// 모달 제어 함수
+function showModal(id) {
+    document.getElementById(id).style.display = 'flex';
+}
+
+function closeModal(id) {
+    document.getElementById(id).style.display = 'none';
+}
+
+// 플레이어 정보 업데이트
+function updatePlayerInfo() {
+    document.getElementById('player-info').innerText =
+        `${playerName} | 레벨: ${level} | 경험치: ${clicks}/${levels[level - 1]}`;
+}
+
+
+
+//핀볼게임
+
+let canvas, ctx; // 캔버스 및 컨텍스트
+let ball1, ball2; // 두 공 객체
+let animationFrame; // 애니메이션 프레임 ID
+
+// 핀볼 게임 시작
+function startPinballGame() {
+    selectedOption = selectedOption; // 선택한 옵션 저장
+    clicks -= selectedOption; // 베팅 클릭 수 차감
+    closeModal('pinball-modal'); // 핀볼 옵션 모달 닫기
+    showModal('pinball-game'); // 핀볼 게임 화면 표시
+
+    // 결과 메시지 초기화
+    document.getElementById('pinball-result').innerText = "";
+    initPinballCanvas();
+    startPinballAnimation();
+}
+
+// 핀볼 캔버스 초기화
+function initPinballCanvas() {
+    canvas = document.getElementById('pinball-canvas');
+    ctx = canvas.getContext('2d');
+
+    // 속도 랜덤화: 확률에 따라 ball1이 더 빠를 확률 70%, ball2는 30%
+    const speeds = shuffleArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+    if (Math.random() <= 0.7) { // 70% 확률로 ball1이 빠름
+        ball1 = { x: 100, y: 0, radius: 10, color: 'blue', speed: speeds[9] }; // 속도 높음
+        ball2 = { x: 200, y: 0, radius: 10, color: 'orange', speed: speeds[8] }; // 속도 낮음
+    } else { // 30% 확률로 ball2가 빠름
+        ball1 = { x: 100, y: 0, radius: 10, color: 'blue', speed: speeds[8] }; // 속도 낮음
+        ball2 = { x: 200, y: 0, radius: 10, color: 'orange', speed: speeds[9] }; // 속도 높음
+    }
+}
+
+
+// 배열 섞기 함수 (숫자 랜덤화)
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+// 핀볼 애니메이션 시작
+function startPinballAnimation() {
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // 캔버스 초기화
+
+        // 공 이동 및 지그재그 좌우 움직임
+        ball1.y += ball1.speed;
+        ball1.x += Math.sin(ball1.y * 0.05) * 2; // 지그재그 이동
+
+        ball2.y += ball2.speed;
+        ball2.x += Math.sin(ball2.y * 0.05) * 2; // 지그재그 이동
+
+        // 공 그리기
+        drawBall(ball1);
+        drawBall(ball2);
+
+        // 게임 종료 조건 (바닥 도달 시)
+        if (ball1.y >= canvas.height || ball2.y >= canvas.height) {
+            cancelAnimationFrame(animationFrame); // 애니메이션 정지
+            determinePinballResult(); // 결과 판정
+            return;
+        }
+
+        // 다음 프레임 요청
+        animationFrame = requestAnimationFrame(animate);
+    }
+
+    animate();
+}
+
+// 공 그리기 함수
+function drawBall(ball) {
+    ctx.beginPath();
+    ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+    ctx.fillStyle = ball.color;
+    ctx.fill();
+    ctx.closePath();
+}
+
+// 핀볼 게임 결과 판정
+function determinePinballResult() {
+    const result = ball1.y > ball2.y ? 'lose' : 'win'; // 더 늦게 도달한 공이 패배
+    processPinballResult(result);
+}
+
+
+
+
+</script>
+</body>
+</html>

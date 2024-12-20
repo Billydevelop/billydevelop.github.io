@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="manifest" href="/mainifest.json">
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>도르핀 키우기 - 버츄얼 스트리머 도르핀과 함께하는 클릭 게임</title>
+    <!-- 기본 메타 태그 -->
+    <meta name="description" content="도르핀 키우기는 인기 버츄얼 스트리머 '도르핀'을 키우는 웹게임입니다. 클릭으로 레벨업하고 새로운 컬렉션과 도르핀의 다양한 모습을 만나보세요.">
+    <meta name="keywords" content="도르핀, 버츄얼 스트리머, 숲 스트리밍, BJ, 도르핀 키우기, 클릭 게임, 버츄얼 유튜버, 키우기 게임, 웹게임">
+    <meta name="author" content="도르핀반려견">
+
+    <!-- Open Graph (OG) 메타 태그 -->
+    <meta property="og:title" content="도르핀 키우기 - 버츄얼 스트리머와 함께 성장하는 게임">
+    <meta property="og:description" content="도르핀 키우기: 클릭으로 도르핀을 성장시키고 다양한 모습과 컬렉션을 수집하세요! 버츄얼 스트리머 도르핀과 함께 재미있는 시간을 가져보세요.">
+    <meta property="og:image" content="metaAssets/Open Graph (OG).png"> <!-- OG 이미지 -->
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://billydevelop.github.io/dorrfinworld.html">
+    <meta property="og:type" content="website">
+    <title>도르핀 100일 기념</title>
+
+
+    <style>
+        :root {
+            --primary-color: #2E8B57;
+            --secondary-color: #FFFFFF;
+            --background-color: #1A1A1D;
+            --menu-color: #007BFF;
+            --accent-color: #FFD700;
+            --text-color: #FFFFFF;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Pretendard', Arial, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        .menu-bar {
+            position: absolute;
+            display:grid;
+            top: 100px;
+            left: 100px;
+            height: 100px;
+            background: rgba(0, 123, 255, 0.8); /* 반투명 스타일 */
+            padding: 10px 20px;
+            border-radius: 10px;
+            z-index: 10;
+        }       
+
+        .menu-bar:hover {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .menu-bar a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .menu-bar a:hover {
+            color: #FFC107;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .fullscreen {
+            position: relative;
+            width: 100vw; /* 배경 크기 확장 */
+            height: 100vh;
+            background: url('/mainassets/배경1.png') no-repeat center center/cover;
+            cursor: grab; /* 드래그 표시 커서 */
+            overflow-x: hidden;
+            transition: transform 0.5s ease; /* 배경 줌 효과 */
+        }
+
+        .fullscreen:active {
+            cursor: grabbing;
+        }
+
+
+        .aim-container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        }
+
+        .aim {
+            position: absolute;
+            color: white;
+            width: 70px;
+            height: 70px;
+            border: 6px solid gray; opacity : 0.9;
+            border-radius: 10%;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-style: bold;
+        }
+
+        
+
+        .aim:hover {
+            width:120px;
+            height:70px;
+            transform: scale(1.4) rotate(720deg);
+            box-shadow: 0 0 100px var(--accent-color);
+            font-style: bold;
+        }
+
+
+
+        .aim-text {
+            display: none;
+            font-size: 16px;
+            color: white;
+            font-style: bold;
+            text-align: center;
+
+        }
+        .aim:hover .aim-text {
+            display: block;
+            font-style: bold;
+        }
+
+            /* 개별 aim 제어: 특정 화면 크기에서 숨기기 */
+            @media (max-width: 768px) {
+            .aim.aim-1 {
+                opacity: 0.2; /* 반투명 처리 */
+                pointer-events: none; /* 클릭 불가 */
+            }
+
+
+            .aim.aim-3 {
+                opacity: 0.2; /* 반투명 처리 */
+                pointer-events: none; /* 클릭 불가 */
+            }
+        }
+
+        .guide-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .guide {
+            pointer-events: all;
+            background-color: var(--menu-color);
+            color: var(--secondary-color);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            cursor: pointer;
+            z-index: 2000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: fixed;
+        }
+
+
+
+        .popup {
+            position: fixed;
+            display:flex;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 90%;
+            max-width: 600px;
+            background-color: rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            box-shadow: 0 8px 16px -3px #ffffff;
+            text-align: center;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            z-index: 2000;
+            padding: 80px;
+            opacity: 0;
+            color: var(--text-color);
+        }
+
+        .popup.active {
+            transform: translate(-50%, -50%) scale(1.4);
+            opacity: 1;
+        }
+
+        .popup img {
+            width: 40%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            margin-left:40px;
+            box-shadow: 4px 4px 4px;
+            filter: drop-shadow(4px 4px 4px)
+        }
+
+        .popup .btndetail{
+            text-align: left;
+            margin-top: 70px;
+            margin-bottom: 70px;
+            margin-left: 20px;
+        }
+
+        .popup h2 {
+            margin-left: 60px;
+            font-size: 1.5em;
+            color: var(--secondary-color);
+            text-align: left;
+            align-content: center;
+            text-shadow: #1A1A1D;
+            color:#ffffff
+        }
+
+
+        .popup button {
+            flex: 1;
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+            margin-top: 40px;
+            margin-left: 60px;
+            font-weight: bold;
+        }
+
+        .popup button:hover {
+            background-color: #FFC107;
+        }
+
+        
+        .video-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 90%;
+            max-width: 800px;
+            background-color: #000;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            z-index: 3000;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            opacity: 0;
+        }
+
+        .video-popup.active {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        .video-popup video {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+
+
+        .bgm-button {
+            position: absolute;
+            top: 300px;
+            left: 100px;
+            background: orange;
+            border-top-left-radius: 0%;
+            border-top-right-radius: 40%;
+            border-bottom-left-radius: 0%;
+            border-bottom-right-radius: 40%;
+
+            width: 200px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 8px 16px -3px #ffffff;
+            z-index: 10;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .bgm-button button {
+            background: none;
+            border: none;
+            color: var(--secondary-color);
+            font-size: 1.5em;
+            cursor: pointer;
+            outline: none;
+            color: #2E2525;
+            font-weight: bold;
+        }
+
+        .bgm-button:hover {
+            transform: scale(1.1);
+            background-color: #0056b3;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div class="menu-bar">
+        <a href="#" onclick="showVideoPopup()">100Days QuickView</a>
+        <a href="#" onclick="document.querySelector('.aim[data-popup=popup2]').click()">Raise Dorrfin</a>
+        <a href="#" onclick="document.querySelector('.aim[data-popup=popup3]').click()">Lucky Message</a>
+    </div>
+
+    <!-- BGM 버튼 -->
+    <div class="bgm-button">
+        <button id="bgm-toggle-btn" onclick="toggleBGM()">🎵 BGM ON</button>
+    </div>
+
+    <audio id="bgmAudio" loop>
+        <source src="./assets/background-music.mp3" type="audio/mpeg">
+    </audio>
+
+
+    
+
+
+
+    <div class="fullscreen">
+        <div class="aim-container">
+            <div class="aim" style="top: 34%; left: 28%;" data-popup="videoPopup">
+                <span class="aim-text"> 100Days quickView </span>
+            </div>
+            <div class="aim" style="top: 42%; left: 54%;" data-popup="popup2">
+                <span class="aim-text">Raise Dorrfin</span>
+            </div>
+            <div class="aim" style="top: 62%; left: 88%;" data-popup="popup3">
+                <span class="aim-text">Lucky Message</span>
+            </div>
+            <div class="aim" style="top: 68%; left: 34%;">
+                <span class="aim-text">르핀이가 좋아하는 말보루 레드!</span>
+            </div>
+            <div class="aim" style="top: 44%; left: 10%;">
+                <span class="aim-text">엣치치 포션...</span>
+            </div>
+            <div class="aim" style="top: 50%; left: 57%;">
+                <span class="aim-text">도르핀 스케쥴이 빼곡히 적혀있다....</span>
+            </div>
+        </div>
+    </div>
+
+        <!-- 팝업 모달 -->
+        <div class="popup" id="popup1">
+            <img src="./mainassets/aim3-click-image.png" alt="복어단 편지지 3">
+            <div class="btndetail">
+            <h2>복어단의</h2>
+            <h2>도르핀 데뷔 100일</h2>
+            <h2>축하 메시지를</h2>
+            <h2>확인하세요 !</h2>
+            <button onclick="openMessageBox()">메세지함 열기</button>
+            </div>
+        </div>
+
+        <div class="popup" id="popup2">
+            <img src="./mainassets/aim2-click-image.png" alt="복어단 편지지 3">
+            <div class="btndetail">
+            <h2>[100주년:도르핀 키우기]</h2>
+            <h2>도르핀을 키우고 컬렉션을 수집하세요</h2>
+            <h2>채팅치고 통나무들고</h2>
+            <h2>고로시, 도르 핀볼도!</h2>
+            <button onclick="openMessageBox()">도르핀 키우기</button>
+            </div>
+        </div>
+
+        <div class="popup" id="popup3">
+            <img src="./mainassets/aim3-click-image.png" alt="복어단 편지지 3">
+            <div class="btndetail">
+            <h2>복어단의</h2>
+            <h2>도르핀 데뷔 100일</h2>
+            <h2>축하 메시지를</h2>
+            <h2>확인하세요 !</h2>
+            <button onclick="openMessageBox()">메세지함 열기</button>
+        </div>
+    </div>
+
+           
+           
+           
+           
+            <div class="video-popup" id="videoPopup">
+                <button class="close-btn" onclick="closeVideoPopup()">&times;</button>
+                <video controls>
+                    <source src="/mnt/data/video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+
+
+    <script>
+
+
+
+        // 전역 변수 선언
+        let isBgmPlaying = false;
+
+        // BGM 오디오 참조
+        const bgmAudio = document.getElementById("bgmAudio");
+
+        // BGM 토글 함수
+        function toggleBGM() {
+            const bgmButton = document.getElementById("bgm-toggle-btn");
+            if (isBgmPlaying) {
+                bgmAudio.pause();
+                bgmButton.textContent = "🎵"; // 음악 끔
+            } else {
+                bgmAudio.play();
+                bgmButton.textContent = "🔇"; // 음악 켬
+            }
+            isBgmPlaying = !isBgmPlaying;
+        }
+
+
+
+
+        document.querySelectorAll('.aim').forEach(aim => {
+            aim.addEventListener('click', (e) => {
+                const popupId = e.target.getAttribute('data-popup');
+                document.querySelectorAll('.popup').forEach(popup => popup.classList.remove('active'));
+                document.getElementById(popupId).classList.add('active');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('aim')) {
+                document.querySelectorAll('.popup').forEach(popup => popup.classList.remove('active'));
+            }
+        });
+
+    // 에임 위치 확인 및 가이드 표시
+    function checkAimPositions() {
+        const aims = document.querySelectorAll('.aim');
+        const guideContainer = document.createElement('div');
+        guideContainer.className = 'guide-container';
+        document.body.appendChild(guideContainer);
+
+        aims.forEach((aim, index) => {
+            const rect = aim.getBoundingClientRect();
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight;
+
+            // 화면 밖에 있는 에임 탐지
+            if (rect.left < 0 || rect.right > screenWidth || rect.top < 0 || rect.bottom > screenHeight) {
+                const guide = document.createElement('div');
+                guide.className = 'guide';
+                guide.textContent = `Go to ${index + 1}`;
+                guide.style.position = 'fixed';
+
+                // 위치에 따라 화살표 표시
+                if (rect.left < 0) {
+                    guide.style.left = '0';
+                    guide.style.top = `${rect.top + rect.height / 2}px`;
+                } else if (rect.right > screenWidth) {
+                    guide.style.right = '0';
+                    guide.style.top = `${rect.top + rect.height / 2}px`;
+                } else if (rect.top < 0) {
+                    guide.style.top = '0';
+                    guide.style.left = `${rect.left + rect.width / 2}px`;
+                } else if (rect.bottom > screenHeight) {
+                    guide.style.bottom = '0';
+                    guide.style.left = `${rect.left + rect.width / 2}px`;
+                }
+
+                // 가이드 클릭 시 해당 에임으로 이동
+                guide.addEventListener('click', () => {
+                    aim.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+                });
+
+                guideContainer.appendChild(guide);
+            }
+        });
+    }
+
+    //aim hidden
+    document.querySelectorAll('.aim').forEach(aim => {
+    aim.addEventListener('click', (e) => {
+        if (getComputedStyle(aim).display === 'none') {
+            console.log('This aim is hidden and cannot be clicked.');
+            return;
+        }
+        const popupId = e.target.getAttribute('data-popup');
+        document.querySelectorAll('.popup').forEach(popup => popup.classList.remove('active'));
+        document.getElementById(popupId).classList.add('active');
+    });
+});
+
+    // 초기 확인 및 윈도우 리사이즈 시 업데이트
+    checkAimPositions();
+    window.addEventListener('resize', () => {
+        document.querySelectorAll('.guide-container').forEach(container => container.remove());
+        checkAimPositions();
+    });
+
+
+    
+
+        // 모바일에서 배경 드래그 이동 기능
+        const fullscreen = document.getElementById('fullscreen');
+        let isDragging = false;
+        let startX;
+
+        fullscreen.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            startX = e.touches[0].pageX;
+        });
+
+        fullscreen.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            const x = e.touches[0].pageX;
+            const deltaX = startX - x;
+            fullscreen.scrollLeft += deltaX;
+            startX = x;
+        });
+
+        fullscreen.addEventListener('touchend', () => {
+            isDragging = false;
+        });
+
+
+                // 비디오 팝업 열기
+                function showVideoPopup() {
+            document.getElementById('videoPopup').classList.add('active');
+        }
+
+        // 비디오 팝업 닫기
+        function closeVideoPopup() {
+            document.getElementById('videoPopup').classList.remove('active');
+        }
+
+
+
+// URL 새 창으로 열기
+function openMessageBox() {
+    const url = "https://billydevelop.github.io/raisedorrfin.html"; // 열고자 하는 URL
+    window.open(url, "_blank"); // 새 창으로 열기
+}
+
+
+
+    </script>
+</body>
+</html>
