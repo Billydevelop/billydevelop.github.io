@@ -49,7 +49,7 @@
             top: 100px;
             left: 100px;
             height: 120px;
-            background: rgba(0, 123, 255, 0.8); /* 반투명 스타일 */
+            background   :#FFD700; /* 반투명 스타일 */
             padding: 10px 20px;
             border-radius: 10px;
             z-index: 10;
@@ -59,6 +59,7 @@
             background: rgba(0, 123, 255, 0); /* 반투명 스타일 */
             color: rgb(158, 158, 158);
             padding-bottom: 10px;
+            
         }
 
         .menu-bar:hover {
@@ -76,7 +77,7 @@
         }
 
         .menu-bar a:hover {
-            color: #FFC107;
+            color: var(--menu-color);
             text-decoration: none;
             font-size: 1.2em;
             font-weight: bold;
@@ -249,7 +250,112 @@
 
         .popup button:hover {
             background-color: #FFC107;
+            transform: translateY(-5px) scale(1.05);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+        .bgm-container {
+            position: fixed;
+            top: 260px;
+            left: 100px;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            height: 300px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .bgm-title {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .bgm-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .bgm-controls button {
+            background: #FFD700;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 1em;
+            color: #1A1A1D;
+            transition: background-color 0.3s ease;
+        }
+
+        .bgm-controls button:hover {
+            background: #FFC107;
+        }
+
+        .bgm-playlist {
+            width: 100%;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .bgm-playlist ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .bgm-playlist li {
+            padding: 8px 10px;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.1);
+            margin-bottom: 5px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .bgm-playlist li:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .bgm-playlist li.active {
+            background: rgba(255, 215, 0, 0.5);
+            font-weight: bold;
+        }
+
+        /* 스크롤바 스타일 */
+        .bgm-playlist::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .bgm-playlist::-webkit-scrollbar-thumb {
+            background: #FFD700;
+            border-radius: 5px;
+        }
+
+        .bgm-playlist::-webkit-scrollbar-thumb:hover {
+            background: #FFC107;
+        }
+
+
+
+
+
+
+
+
+
 
         
 /* 팝업을 화면 중앙에 오버레이되도록 배치 */
@@ -363,43 +469,84 @@
 
 
 
-        .bgm-button {
-            position: absolute;
-            top: 300px;
-            left: 100px;
-            background: orange;
-            border-top-left-radius: 0%;
-            border-top-right-radius: 40%;
-            border-bottom-left-radius: 0%;
-            border-bottom-right-radius: 40%;
-
-            width: 200px;
-            height: 50px;
+        .social-links {
+            position:absolute;
+            top: 100px;
+            right: 100px;
             display: flex;
             justify-content: center;
-            align-items: center;
-            box-shadow: 0 8px 16px -3px #ffffff;
-            z-index: 10;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            gap: 15px;
+            padding:10px;
         }
 
-        .bgm-button button {
-            background: none;
-            border: none;
-            color: var(--secondary-color);
-            font-size: 1.5em;
-            cursor: pointer;
-            outline: none;
-            color: #2E2525;
+        .social-links a {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            margin-left: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.2); /* 호버 시 크기 확대 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+        }
+
+        .social-links img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* 아이콘 이미지 크기 조정 */
+            border-radius: 30%; /* 둥근 모서리 */
+            border-color: #FFD700;
+            border: 3px solid #FFD700; opacity : 0.9;
+            background: rgba(39, 39, 39, 0.7); /* 반투명 스타일 */
+            padding: 4px;
+        }
+
+
+
+
+        /* 디데이 위젯 */
+        .d-day-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #2E2E2E;
+            padding: 15px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            z-index: 1000;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .d-day-header {
+            font-size: 1rem;
+            color: #FFD700;
+        }
+
+        .d-day-number {
+            font-size: 2rem;
             font-weight: bold;
+            margin: 5px 0;
         }
 
-        .bgm-button:hover {
-            transform: scale(1.1);
-            background-color: #0056b3;
+        .d-day-footer {
+            font-size: 0.8rem;
+            color: #B0B0B0;
         }
 
+
+
+        @media (max-width: 768px) {
+            .social-links {
+                flex-wrap: wrap; /* 여러 줄로 아이콘 배치 */
+            }
+            .social-links a {
+                width: 40px;
+                height: 40px; /* 아이콘 크기 축소 */
+            }
+        }
 
 
     </style>
@@ -408,21 +555,40 @@
     <div class="menu-bar">
         <div class="menu-bar-roof">Select-Menu</div>
         <a href="#" onclick="showVideoPopup()">100Days QuickView</a>
-        <a href="#" onclick="document.querySelector('.aim[data-popup=popup2]').click()">Raise Dorrfin</a>
-        <a href="#" onclick="document.querySelector('.aim[data-popup=popup3]').click()">Lucky Message</a>
+        <a href="#" onclick="document.querySelector('.aim[data-popup=popup2]').click()">도르핀 키우기</a>
+        <a href="#" onclick="document.querySelector('.aim[data-popup=popup3]').click()">복어단 축하메시지</a>
     </div>
 
-    <!-- BGM 버튼 -->
-    <div class="bgm-button">
-        <button id="bgm-toggle-btn" onclick="toggleBGM()">🎵 BGM ON</button>
+    <div class="d-day-widget" id="dDayWidget">
+        <div class="d-day-header">방송 디데이</div>
+        <div class="d-day-number" id="dDay">0</div>
+        <div class="d-day-footer">기준일: 10월 1일 00시</div>
     </div>
 
-    <audio id="bgmAudio" loop>
-        <source src="./assets/background-music.mp3" type="audio/mpeg">
-    </audio>
 
+    <div class="bgm-container">
+        <div class="bgm-title" id="bgmTitle">🎵 BGM: Welcome</div>
+        <div class="bgm-controls">
+            <button id="prevTrack">⏮</button>
+            <button id="playPause">▶</button>
+            <button id="nextTrack">⏭</button>
+        </div>
+        <div class="bgm-playlist">
+            <ul id="playlist">
+                <li data-src="./assets/background-music.mp3" class="active">킷땅 권위자 - 도르핀</li>
+                <li data-src="./assets/bgm2.mp3">숲 - 도르핀</li>
+                <li data-src="./assets/bgm3.mp3">시퍼런 봄 - 도르핀</li>
+                <li data-src="./assets/bgm4.mp3">Savage - 도르핀</li>
+                <li data-src="./assets/bgm4.mp3">경서 모음 - 도르핀</li>
+                <li data-src="./assets/bgm4.mp3">어떨 것 같아 - 도르핀</li>
+                <li data-src="./assets/bgm4.mp3">밤양갱 - 도르핀</li>
+                <li data-src="./assets/bgm4.mp3">라푼젤 OST - 도르핀</li>
+                <li data-src="./assets/bgm4.mp3">마마 - 김필선</li>
+            </ul>
+        </div>
+    </div>
 
-    
+    <audio id="bgmAudio" loop></audio>
 
 
 
@@ -497,12 +663,29 @@
             <div class="video-popup" id="videoPopup">
                 <button class="close-btn" onclick="closeVideoPopup()">&times;</button>
                 <video controls>
-                    <source src="/mnt/data/video.mp4" type="video/mp4">
+                    <source src="./assets/background-music.mp3" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
 
-
+            <div class="social-links">
+                <a href="https://ch.sooplive.co.kr/333333333327" target="_blank" title="숲">
+                    <img src="./assets/SOOP_Symbol_White.png" alt="숲 아이콘">
+                </a>
+                <a href="https://www.youtube.com/@dor_fin11" target="_blank" title="유튜브">
+                    <img src="./assets/YOUTUBE_Symbol.png" alt="유튜브 아이콘">
+                </a>
+                <a href="https://discord.com/invite/QUNGq8ews3" target="_blank" title="디스코드">
+                    <img src="./assets/DISCORD_Symbol.png" alt="디스코드 아이콘">
+                </a>
+                <a href="https://cafe.naver.com/finiy" target="_blank" title="팬카페">
+                    <img src="./assets/CAFE_Symbol.png" alt="팬카페 아이콘">
+                </a>
+                <a href="https://docs.google.com/spreadsheets/d/1tFXE_gr6mfkMDEeEN8DWY4wZMVfHzZVxHx8wUxgqP0Q/edit?usp=sharing" target="_blank" title="노래책">
+                    <img src="./assets/SONGBOOK_Symbol.png" alt="노래책 아이콘">
+                </a>
+            </div>
+            
 
     <script>
 
@@ -510,24 +693,80 @@
 
         // 전역 변수 선언
         let isBgmPlaying = false;
+        let currentAudio = null; // 현재 재생 중인 오디오
+
 
         // BGM 오디오 참조
         const bgmAudio = document.getElementById("bgmAudio");
+        const bgmTitle = document.getElementById("bgmTitle");
+        const playPauseBtn = document.getElementById("playPause");
+        const prevTrackBtn = document.getElementById("prevTrack");
+        const nextTrackBtn = document.getElementById("nextTrack");
+        const playlist = document.getElementById("playlist");
+        const tracks = playlist.querySelectorAll("li");
 
-        // BGM 토글 함수
-        function toggleBGM() {
-            const bgmButton = document.getElementById("bgm-toggle-btn");
-            if (isBgmPlaying) {
-                bgmAudio.pause();
-                bgmButton.textContent = "🎵"; // 음악 끔
-            } else {
-                bgmAudio.play();
-                bgmButton.textContent = "🔇"; // 음악 켬
-            }
-            isBgmPlaying = !isBgmPlaying;
+
+        let currentTrackIndex = 0;
+
+        // Initialize first track
+        bgmAudio.src = tracks[currentTrackIndex].dataset.src;
+
+        // Update UI for active track
+        function updateActiveTrack() {
+            tracks.forEach((track, index) => {
+                track.classList.toggle("active", index === currentTrackIndex);
+            });
+            bgmTitle.textContent = `🎵 BGM: ${tracks[currentTrackIndex].textContent}`;
         }
 
+        // Play or Pause function
+        function togglePlayPause() {
+            if (bgmAudio.paused) {
+                bgmAudio.play();
+                playPauseBtn.textContent = "❚❚";
+            } else {
+                bgmAudio.pause();
+                playPauseBtn.textContent = "▶";
+            }
+        }
 
+        // Play next track
+        function playNextTrack() {
+            currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
+            bgmAudio.src = tracks[currentTrackIndex].dataset.src;
+            bgmAudio.play();
+            playPauseBtn.textContent = "❚❚";
+            updateActiveTrack();
+        }
+
+        // Play previous track
+        function playPrevTrack() {
+            currentTrackIndex =
+                (currentTrackIndex - 1 + tracks.length) % tracks.length;
+            bgmAudio.src = tracks[currentTrackIndex].dataset.src;
+            bgmAudio.play();
+            playPauseBtn.textContent = "❚❚";
+            updateActiveTrack();
+        }
+
+        // Select track from playlist
+        tracks.forEach((track, index) => {
+            track.addEventListener("click", () => {
+                currentTrackIndex = index;
+                bgmAudio.src = track.dataset.src;
+                bgmAudio.play();
+                playPauseBtn.textContent = "❚❚";
+                updateActiveTrack();
+            });
+        });
+
+        // Add event listeners
+        playPauseBtn.addEventListener("click", togglePlayPause);
+        nextTrackBtn.addEventListener("click", playNextTrack);
+        prevTrackBtn.addEventListener("click", playPrevTrack);
+
+        // Initialize UI
+        updateActiveTrack();
 
 
         document.querySelectorAll('.aim').forEach(aim => {
@@ -676,7 +915,35 @@ function closePopup() {
 
 
 
+function calculateDday() {
+            try {
+                // 기준일 설정 (10월 1일 00시)
+                const targetDate = new Date(new Date().getFullYear(), 9, 1, 0, 0, 0); // 9 = 10월 (0-indexed)
+                const now = new Date();
+                
+                // 오늘 날짜까지 포함하여 디데이 계산
+                const diffTime = now.getTime() - targetDate.getTime();
+                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
 
+                // 디데이 화면에 표시
+                const dDayElement = document.getElementById("dDay");
+                dDayElement.textContent = diffDays;
+            } catch (error) {
+                console.error("디데이 계산 중 오류:", error);
+            }
+        }
+
+        // 디데이 계산 실행
+        calculateDday();
+
+        // 매일 자정(00:00)에 자동 갱신
+        const now = new Date();
+        const timeToMidnight = 
+            new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0).getTime() - now.getTime();
+        setTimeout(() => {
+            calculateDday();
+            setInterval(calculateDday, 24 * 60 * 60 * 1000); // 매일 갱신
+        }, timeToMidnight);
 
     </script>
 </body>
