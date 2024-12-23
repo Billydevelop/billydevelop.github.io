@@ -1,0 +1,128 @@
+:root {
+    --primary-color: #FFD700;
+    --secondary-color: #1A1A1D;
+    --accent-color: #2E8B57;
+    --text-color: #FFFFFF;
+}
+
+body {
+    margin: 0;
+    font-family: 'Pretendard', Arial, sans-serif;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+.paper-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.paper-card {
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: var(--secondary-color);
+}
+
+.paper-card h3 {
+    margin: 0 0 10px;
+}
+
+.paper-card p {
+    font-size: 0.9em;
+    margin: 0 0 10px;
+}
+
+.paper-card span {
+    font-size: 0.8em;
+    font-style: italic;
+}
+
+.paper-card:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+.paper-detail {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+    padding: 20px;
+    z-index: 1000;
+}
+
+.paper-detail p{
+    text-align: left;
+}
+
+.paper-detail.hidden {
+    display: none;
+}
+
+.paper-content {
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    max-width: 600px;
+    text-align: center;
+}
+
+.paper-content h1 {
+    margin-bottom: 20px;
+}
+
+.paper-content p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.paper-content button {
+    background-color: var(--accent-color);
+    border: none;
+    color: var(--text-color);
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.paper-content button:hover {
+    background-color: #FFC107;
+}
+
+
+/* 전체 스크롤바 스타일 */
+::-webkit-scrollbar {
+    width: 10px; /* 스크롤바 너비 */
+}
+
+/* 스크롤바 트랙 스타일 */
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1); /* 연한 배경 */
+    border-radius: 5px;
+}
+
+/* 스크롤바 핸들 스타일 */
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 215, 0, 0.8); /* 골드 컬러 */
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* 그림자 */
+}
+
+/* 스크롤바 핸들 호버 시 스타일 */
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 215, 0, 1); /* 더 밝은 골드 */
+}
