@@ -21,12 +21,8 @@
     <meta property="og:image:height" content="630">
     <meta property="og:url" content="https://billydevelop.github.io/dorrfinworld.html">
     <meta property="og:type" content="website">
-
+  
     <link rel="icon" href="metaAssets/파비콘 (Favicon).png" type="image/png"> 
-
-    
-    <title>도르핀 100일 기념</title>
-
 
     <style>
         :root {
@@ -44,6 +40,7 @@
             background-color: var(--background-color);
             color: var(--text-color);
             overflow-x: hidden;
+            -ms-overflow-style: scrollbar;
         }
 
         .menu-bar {
@@ -51,12 +48,18 @@
             display:grid;
             top: 100px;
             left: 100px;
-            height: 100px;
+            height: 120px;
             background: rgba(0, 123, 255, 0.8); /* 반투명 스타일 */
             padding: 10px 20px;
             border-radius: 10px;
             z-index: 10;
         }       
+
+        .menu-bar-roof {
+            background: rgba(0, 123, 255, 0); /* 반투명 스타일 */
+            color: rgb(158, 158, 158);
+            padding-bottom: 10px;
+        }
 
         .menu-bar:hover {
             color: var(--secondary-color);
@@ -105,7 +108,7 @@
             color: white;
             width: 70px;
             height: 70px;
-            border: 6px solid gray; opacity : 0.9;
+            border: 6px solid rgb(255, 255, 255); opacity : 0.9;
             border-radius: 10%;
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -249,6 +252,88 @@
         }
 
         
+/* 팝업을 화면 중앙에 오버레이되도록 배치 */
+#messageListPopup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0); /* 화면 중앙으로 이동 */
+    width: 90%;
+    max-width: 800px; /* 팝업 너비 제한 */
+    background-color: rgba(0, 0, 0, 0.6); /* 반투명 검정 배경 */
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    padding: 20px;
+    z-index: 3000; /* 팝업을 최상위 레이어로 올리기 */
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#messageListPopup.active {
+    transform: translate(-50%, -50%) scale(1); /* 팝업 표시 */
+    opacity: 1;
+}
+
+#messageListPopup iframe {
+    width: 100%;
+    height: 700px; /* iframe 높이 조정 */
+    border: none;
+    border-radius: 10px;
+}
+
+#messageListPopup .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #007BFF; /* 밝은 파란색 */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    z-index: 3100;
+}
+
+/* 닫기 버튼 호버 효과 */
+#messageListPopup .close-btn:hover {
+    background: #0056b3; /* 어두운 파란색 */
+    transform: scale(1.1); /* 버튼 크기 살짝 확대 */
+}
+
+/* 전체 스크롤바 스타일 */
+::-webkit-scrollbar {
+    width: 10px; /* 스크롤바 너비 */
+}
+
+/* 스크롤바 트랙 스타일 */
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1); /* 연한 배경 */
+    border-radius: 5px;
+}
+
+/* 스크롤바 핸들 스타일 */
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 215, 0, 0.8); /* 골드 컬러 */
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* 그림자 */
+}
+
+/* 스크롤바 핸들 호버 시 스타일 */
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 215, 0, 1); /* 더 밝은 골드 */
+}
+
+
+
+
+        
         .video-popup {
             position: fixed;
             top: 50%;
@@ -321,6 +406,7 @@
 </head>
 <body>
     <div class="menu-bar">
+        <div class="menu-bar-roof">Select-Menu</div>
         <a href="#" onclick="showVideoPopup()">100Days QuickView</a>
         <a href="#" onclick="document.querySelector('.aim[data-popup=popup2]').click()">Raise Dorrfin</a>
         <a href="#" onclick="document.querySelector('.aim[data-popup=popup3]').click()">Lucky Message</a>
@@ -371,7 +457,7 @@
             <h2>도르핀 데뷔 100일</h2>
             <h2>축하 메시지를</h2>
             <h2>확인하세요 !</h2>
-            <button onclick="openMessageBox()">메세지함 열기</button>
+            <button onclick="openMessageBox2()">메세지함 열기</button>
             </div>
         </div>
 
@@ -386,17 +472,24 @@
             </div>
         </div>
 
-        <div class="popup" id="popup3">
-            <img src="./mainassets/aim3-click-image.png" alt="복어단 편지지 3">
-            <div class="btndetail">
-            <h2>복어단의</h2>
-            <h2>도르핀 데뷔 100일</h2>
-            <h2>축하 메시지를</h2>
-            <h2>확인하세요 !</h2>
-            <button onclick="openMessageBox()">메세지함 열기</button>
+            <div class="popup" id="popup3">
+                <img src="./mainassets/aim3-click-image.png" alt="복어단 편지지 3">
+                <div class="btndetail">
+                <h2>복어단의</h2>
+                <h2>도르핀 데뷔 100일</h2>
+                <h2>축하 메시지를</h2>
+                <h2>확인하세요 !</h2>
+                <button onclick="openMessageBox3()">메세지함 열기</button>
+            </div>
         </div>
     </div>
 
+
+            <!-- 추가된 iframe을 위한 모달 -->
+        <div class="messagepopup" id="messageListPopup">
+            <button class="close-btn" onclick="closeMessageList()">&times;</button>
+            <iframe id="messageListIframe" src="" style="width: 100%; height: 500px; border: none; border-radius: 10px;"></iframe>
+        </div>n
            
            
            
@@ -558,6 +651,30 @@ function openMessageBox() {
     const url = "https://billydevelop.github.io/raisedorrfin.html"; // 열고자 하는 URL
     window.open(url, "_blank"); // 새 창으로 열기
 }
+
+
+// 메세지 리스트 모달 열기
+function openMessageBox3() {
+    const messageListPopup = document.getElementById('messageListPopup');
+    const iframe = document.getElementById('messageListIframe');
+    iframe.src = 'luckyfishmessage.html'; // 편지 리스트 HTML 경로
+    messageListPopup.classList.add('active');
+}
+
+// 메세지 리스트 모달 닫기
+function closeMessageList() {
+    const messageListPopup = document.getElementById('messageListPopup');
+    const iframe = document.getElementById('messageListIframe');
+    messageListPopup.classList.remove('active');
+    iframe.src = ''; // iframe 초기화
+}
+
+// 기존 팝업 닫기 함수 유지
+function closePopup() {
+    document.querySelectorAll('.popup').forEach(popup => popup.classList.remove('active'));
+}
+
+
 
 
 
