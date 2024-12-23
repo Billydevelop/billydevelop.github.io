@@ -505,7 +505,6 @@
 
 
 
-
         /* 디데이 위젯 */
         .d-day-widget {
             position: fixed;
@@ -523,12 +522,19 @@
         .d-day-header {
             font-size: 1rem;
             color: #FFD700;
+            margin-bottom: 10px;
         }
 
         .d-day-number {
             font-size: 2rem;
             font-weight: bold;
             margin: 5px 0;
+        }
+
+        .d-day-time {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 10px 0;
         }
 
         .d-day-footer {
@@ -559,12 +565,12 @@
         <a href="#" onclick="document.querySelector('.aim[data-popup=popup3]').click()">복어단 축하메시지</a>
     </div>
 
-    <div class="d-day-widget" id="dDayWidget">
+    <div class="d-day-widget">
         <div class="d-day-header">방송 디데이</div>
-        <div class="d-day-number" id="dDay">0</div>
+        <div class="d-day-number" id="dDay">D-0</div>
         <div class="d-day-footer">기준일: 10월 1일 00시</div>
     </div>
-
+    
 
     <div class="bgm-container">
         <div class="bgm-title" id="bgmTitle">🎵 BGM: Welcome</div>
@@ -688,6 +694,37 @@
             
 
     <script>
+
+
+        const targetDate = new Date(new Date().getFullYear(), 9, 1, 0, 0, 0);
+
+        function calculateDday() {
+            const now = new Date();
+            const diffTime = targetDate - now;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            const totalSeconds = Math.max(0, Math.floor(diffTime / 1000));
+            const hours = String(Math.floor(totalSeconds / 3600) % 24).padStart(2, "0");
+            const minutes = String(Math.floor(totalSeconds / 60) % 60).padStart(2, "0");
+            const seconds = String(totalSeconds % 60).padStart(2, "0");
+
+            const dDayElement = document.getElementById("dDay");
+            const dDayTimeElement = document.getElementById("dDayTime");
+
+            if (diffTime >= 0) {
+                dDayElement.textContent = `D-${diffDays}`;
+                dDayTimeElement.textContent = `${hours}:${minutes}:${seconds}`;
+            } else {
+                const pastDays = Math.abs(diffDays);
+                dDayElement.textContent = `D+${pastDays}`;
+                dDayTimeElement.textContent = `${hours}:${minutes}:${seconds}`;
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            calculateDday();
+            setInterval(calculateDday, 1000);
+        });
+
 
 
 
@@ -915,36 +952,6 @@ function closePopup() {
 
 
 
-function calculateDday() {
-            try {
-                // 기준일 설정 (10월 1일 00시)
-                const targetDate = new Date(new Date().getFullYear(), 9, 1, 0, 0, 0); // 9 = 10월 (0-indexed)
-                const now = new Date();
-                
-                // 오늘 날짜까지 포함하여 디데이 계산
-                const diffTime = now.getTime() - targetDate.getTime();
-                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
-
-                // 디데이 화면에 표시
-                const dDayElement = document.getElementById("dDay");
-                dDayElement.textContent = diffDays;
-            } catch (error) {
-                console.error("디데이 계산 중 오류:", error);
-            }
-        }
-
-        // 디데이 계산 실행
-        calculateDday();
-
-        // 매일 자정(00:00)에 자동 갱신
-        const now = new Date();
-        const timeToMidnight = 
-            new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0).getTime() - now.getTime();
-        setTimeout(() => {
-            calculateDday();
-            setInterval(calculateDday, 24 * 60 * 60 * 1000); // 매일 갱신
-        }, timeToMidnight);
-
-    </script>
-</body>
+        </script>
+    </body>
 </html>
