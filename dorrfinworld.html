@@ -393,7 +393,7 @@
     top: 10px;
     right: 10px;
     background: #007BFF; /* 밝은 파란색 */
-    color: white;
+    color: rgb(255, 255, 255);
     border: none;
     border-radius: 50%;
     width: 30px;
@@ -412,6 +412,7 @@
     background: #0056b3; /* 어두운 파란색 */
     transform: scale(1.1); /* 버튼 크기 살짝 확대 */
 }
+
 
 /* 전체 스크롤바 스타일 */
 ::-webkit-scrollbar {
@@ -448,7 +449,7 @@
             width: 90%;
             max-width: 800px;
             background-color: #000;
-            border-radius: 10px;
+            border-radius: 40px;
             padding: 20px;
             text-align: center;
             z-index: 3000;
@@ -456,7 +457,32 @@
             opacity: 0;
         }
 
+
         .video-popup.active {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        .video-popup .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #007BFF; /* 밝은 파란색 */
+            color: rgb(255, 255, 255);
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            z-index: 3100;
+        }
+
+        .video-popup .close-btn:hover {
             transform: translate(-50%, -50%) scale(1);
             opacity: 1;
         }
@@ -464,7 +490,11 @@
         .video-popup video {
             width: 100%;
             height: auto;
-            border-radius: 10px;
+            border-radius: 0px;
+        }
+
+        .video-popup img {
+            width:100%
         }
 
 
@@ -503,13 +533,24 @@
             padding: 4px;
         }
 
+        .social-links img:hover {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* 아이콘 이미지 크기 조정 */
+            border-radius: 30%; /* 둥근 모서리 */
+            border-color: #FFD700;
+            border: 3px solid #FFD700; opacity : 0.9;
+            background: rgba(42, 255, 166, 0.7); /* 반투명 스타일 */
+            padding: 4px;
+        }
+
 
 
         /* 디데이 위젯 */
         .d-day-widget {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 80px;
+            right: 80px;
             background-color: #2E2E2E;
             padding: 15px 20px;
             border-radius: 12px;
@@ -581,20 +622,28 @@
         </div>
         <div class="bgm-playlist">
             <ul id="playlist">
-                <li data-src="./assets/background-music.mp3" class="active">킷땅 권위자 - 도르핀</li>
-                <li data-src="./assets/bgm2.mp3">숲 - 도르핀</li>
-                <li data-src="./assets/bgm3.mp3">시퍼런 봄 - 도르핀</li>
-                <li data-src="./assets/bgm4.mp3">Savage - 도르핀</li>
-                <li data-src="./assets/bgm4.mp3">경서 모음 - 도르핀</li>
-                <li data-src="./assets/bgm4.mp3">어떨 것 같아 - 도르핀</li>
-                <li data-src="./assets/bgm4.mp3">밤양갱 - 도르핀</li>
-                <li data-src="./assets/bgm4.mp3">라푼젤 OST - 도르핀</li>
-                <li data-src="./assets/bgm4.mp3">마마 - 김필선</li>
+                <li data-src="./assets/시퍼런 봄 - 도르핀.mp3" class="active">시퍼런 봄 - 도르핀</li>
+                <li data-src="./assets/밤양갱 - 도르핀.mp3">밤양갱 - 도르핀</li>
+                <li data-src="./assets/킷땅 권위자 - 도르핀.mp3">킷땅 권위자 - 도르핀</li>
+                <li data-src="./assets/호랑수월가 - 도르핀.mp3">호랑수월가 - 도르핀</li>
+                <li data-src="./assets/혜성-도르핀.mp3">혜성-도르핀</li>
+                <li data-src="./assets/히힛 고음발싸 - 도르핀.mp3">히힛 고음발싸 - 도르핀</li>
+                <li data-src="./assets/꽃의 망령 - 도르핀.mp3">꽃의 망령 - 도르핀</li>
+                <li data-src="./assets/상사화 - 도르핀.mp3">상사화 - 도르핀</li>
+                <li data-src="./assets/초절정 귀여워 핀핀 - 도르핀.mp3">초절정 귀여워 핀핀 - 도르핀</li>
+                <li data-src="./assets/만개화 - 도르핀.mp3">만개화 - 도르핀</li>
+                <li data-src="./assets/lilas - 도르핀.mp3">lilas - 도르핀</li>
+                <li data-src="./assets/경서 모음 - 도르핀.mp3">경서 모음 - 도르핀</li>
+                <li data-src="./assets/수피 - 도르핀.mp3">수피 - 도르핀</li>
+                <li data-src="./assets/라푼젤 OST - 도르핀.mp3">라푼젤 OST - 도르핀</li>
+                <li data-src="./assets/밤양갱 - 도르핀.mp3">밤양갱 - 도르핀</li>
+                <li data-src="./assets/홀로 - 도르핀.mp3">홀로 - 도르핀</li>
+                <li data-src="./assets/시퍼런 봄 - 도르핀.mp3">시퍼런 봄 - 도르핀</li>
             </ul>
         </div>
     </div>
 
-    <audio id="bgmAudio" loop></audio>
+    <audio id="bgmAudio"> </audio>
 
 
 
@@ -659,6 +708,7 @@
 
             <!-- 추가된 iframe을 위한 모달 -->
         <div class="messagepopup" id="messageListPopup">
+            <img src="./assets/복어단메시지.png">
             <button class="close-btn" onclick="closeMessageList()">&times;</button>
             <iframe id="messageListIframe" src="" style="width: 100%; height: 500px; border: none; border-radius: 10px;"></iframe>
         </div>n
@@ -667,11 +717,13 @@
            
            
             <div class="video-popup" id="videoPopup">
-                <button class="close-btn" onclick="closeVideoPopup()">&times;</button>
+                <img src="./videoAssets/video상단배너.png">
                 <video controls>
-                    <source src="./assets/background-music.mp3" type="video/mp4">
+                    <source src="./videoAssets/[도르핀 데뷔 100일] 도르핀 자투리 모음.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
+                <button class="close-btn" onclick="closeVideoPopup()">&times;</button>
+
             </div>
 
             <div class="social-links">
@@ -690,6 +742,10 @@
                 <a href="https://docs.google.com/spreadsheets/d/1tFXE_gr6mfkMDEeEN8DWY4wZMVfHzZVxHx8wUxgqP0Q/edit?usp=sharing" target="_blank" title="노래책">
                     <img src="./assets/SONGBOOK_Symbol.png" alt="노래책 아이콘">
                 </a>
+                <a href="https://fancim.me/celeb/profile.aspx?cu_id=finiy11" target="_blank" title="노래책">
+                    <img src="./assets/fancim_Symbol.png" alt="노래책 아이콘">
+                </a>
+
             </div>
             
 
@@ -796,6 +852,10 @@
                 updateActiveTrack();
             });
         });
+
+
+        // Event listener for when the track ends
+        bgmAudio.addEventListener("ended", playNextTrack); // 노래 끝나면 다음 곡 재생
 
         // Add event listeners
         playPauseBtn.addEventListener("click", togglePlayPause);
