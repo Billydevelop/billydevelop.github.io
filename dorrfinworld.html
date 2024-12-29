@@ -485,6 +485,7 @@
         .video-popup .close-btn:hover {
             transform: translate(-50%, -50%) scale(1);
             opacity: 1;
+            background: #CC0000;
         }
 
         .video-popup video {
@@ -606,9 +607,10 @@
         <a href="#" onclick="document.querySelector('.aim[data-popup=popup3]').click()">복어단 축하메시지</a>
     </div>
 
-    <div class="d-day-widget">
+    <div class="d-day-widget" id="dDayWidget">
         <div class="d-day-header">방송 디데이</div>
-        <div class="d-day-number" id="dDay">D-0</div>
+        <div id="dDay" class="d-day-number">D-0</div>
+        <div id="dDayTime" class="d-day-time">00:00:00</div>
         <div class="d-day-footer">기준일: 10월 1일 00시</div>
     </div>
     
@@ -714,15 +716,14 @@
         </div>n
            
            
-           
-           
-            <div class="video-popup" id="videoPopup">
-                <img src="./videoAssets/video상단배너.png">
-                <a href="https://drive.google.com/file/d/1mXzzt5X7twKzyF4nCkJTjHnvbtXVfcu-/view?usp=drive_link"target="_blank"><img src="./assets/[도르핀 데뷔 100일] 도르핀 자투리 모음.png"></a>
-
-                <button class="close-btn" onclick="closeVideoPopup()">&times;</button>
-
-            </div>
+        <div class="video-popup" id="videoPopup">
+            <button class="close-btn" onclick="closeVideoPopup()">&times;</button>
+            <img src="./videoAssets/video상단배너.png" alt="배너">
+            <a href="https://drive.google.com/file/d/1mXzzt5X7twKzyF4nCkJTjHnvbtXVfcu-/view?usp=drive_link" target="_blank">
+                <img src="./assets/[도르핀 데뷔 100일] 도르핀 자투리 모음.png" alt="자투리 모음">
+            </a>
+        </div>
+        
 
             <div class="social-links">
                 <a href="https://ch.sooplive.co.kr/333333333327" target="_blank" title="숲">
@@ -749,35 +750,83 @@
 
     <script>
 
+document.addEventListener("DOMContentLoaded", () => {
+    // 여기에 기존 코드를 삽입
+    const popup = document.getElementById("videoPopup");
+    if (popup) {
+        popup.classList.add("active"); // 팝업 표시
+    } else {
+        console.error("videoPopup element not found!");
+    }
+});
+
+        // 페이지 로드 시 자동으로 팝업 표시
+        window.onload = function () {
+            showVideoPopup(); // 페이지 로드 후 팝업 실행
+        };
+
+                // 팝업 표시 함수
+        function showVideoPopup() {
+            const popup = document.getElementById("videoPopup");
+            if (popup) {
+                popup.classList.add("active"); // 팝업 표시
+            } else {
+                console.error("videoPopup element not found!");
+            }
+        }
+
+        // 팝업 닫기 함수
+        function closeVideoPopup() {
+            const popup = document.getElementById("videoPopup");
+            if (popup) {
+                popup.classList.remove("active"); // 팝업 숨김
+            }
+        }
+
 
         const targetDate = new Date(new Date().getFullYear(), 9, 1, 0, 0, 0);
 
         function calculateDday() {
-            const now = new Date();
-            const diffTime = targetDate - now;
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            const totalSeconds = Math.max(0, Math.floor(diffTime / 1000));
-            const hours = String(Math.floor(totalSeconds / 3600) % 24).padStart(2, "0");
-            const minutes = String(Math.floor(totalSeconds / 60) % 60).padStart(2, "0");
-            const seconds = String(totalSeconds % 60).padStart(2, "0");
+        const targetDate = new Date(new Date().getFullYear(), 9, 1, 0, 0, 0); // 10월 1일 00시
+        const now = new Date();
 
-            const dDayElement = document.getElementById("dDay");
-            const dDayTimeElement = document.getElementById("dDayTime");
+        // 시간 차이 계산
+        const diffTime = targetDate - now;
+        const totalSeconds = Math.floor(Math.abs(diffTime) / 1000); // 초 단위로 절대값 계산
 
-            if (diffTime >= 0) {
-                dDayElement.textContent = `D-${diffDays}`;
-                dDayTimeElement.textContent = `${hours}:${minutes}:${seconds}`;
-            } else {
-                const pastDays = Math.abs(diffDays);
-                dDayElement.textContent = `D+${pastDays}`;
-                dDayTimeElement.textContent = `${hours}:${minutes}:${seconds}`;
-            }
+        // 일, 시, 분, 초 계산
+        const days = Math.ceil(diffTime / (1000 * 60 * 60 * 24) - 1); // 디데이
+        const hours = String(Math.floor(totalSeconds / 3600) % 24).padStart(2, '0');
+        const minutes = String(Math.floor(totalSeconds / 60) % 60).padStart(2, '0');
+        const seconds = String(totalSeconds % 60).padStart(2, '0');
+
+        // HTML 요소 선택
+        const dDayElement = document.getElementById("dDay");
+        const dDayTimeElement = document.getElementById("dDayTime");
+
+        if (!dDayElement || !dDayTimeElement) {
+            console.error("D-Day elements are missing in the HTML!");
+            return;
         }
 
-        document.addEventListener("DOMContentLoaded", () => {
-            calculateDday();
-            setInterval(calculateDday, 1000);
-        });
+        // 디데이 및 시분초 업데이트
+        if (diffTime >= 0) {
+            dDayElement.textContent = `D-${days}`;
+        } else {
+            const pastDays = Math.abs(days);
+            dDayElement.textContent = `D+${pastDays}`;
+        }
+        dDayTimeElement.textContent = `${hours}:${minutes}:${seconds}`;
+    }
+
+    // 페이지 로드 시 실행 및 매 초 업데이트
+    window.onload = function () {
+        calculateDday(); // 초기 실행
+        setInterval(calculateDday, 1000); // 1초마다 업데이트
+    };
+
+
+
 
 
 
@@ -966,17 +1015,6 @@
         fullscreen.addEventListener('touchend', () => {
             isDragging = false;
         });
-
-
-                // 비디오 팝업 열기
-                function showVideoPopup() {
-            document.getElementById('videoPopup').classList.add('active');
-        }
-
-        // 비디오 팝업 닫기
-        function closeVideoPopup() {
-            document.getElementById('videoPopup').classList.remove('active');
-        }
 
 
 
