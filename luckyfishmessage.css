@@ -12,12 +12,21 @@ body {
     color: var(--text-color);
 }
 
+img {
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+}
+
 .paper-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
     padding: 20px;
 }
+
+.paper-list:has(.paper-card:hover) .paper-card:not(:hover) {
+    filter: blur(3px)
+  }
 
 .paper-card {
     background-color: var(--primary-color);
@@ -45,7 +54,7 @@ body {
 
 .paper-card:hover {
     transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 8px rgba(255, 255, 255, 0.7);
 }
 
 .paper-detail {
