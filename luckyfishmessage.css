@@ -70,10 +70,11 @@ img {
     color: var(--text-color);
     padding: 20px;
     z-index: 1000;
+    overflow-y: auto; /* 세로 스크롤 활성화 */
 }
 
 .paper-detail p{
-    text-align: left;
+    text-align: center;
 }
 
 .paper-detail.hidden {
@@ -87,6 +88,9 @@ img {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
     max-width: 600px;
     text-align: center;
+    overflow-y: auto; /* 세로 스크롤 활성화 */
+    max-height: 90%; /* 최대 높이 설정 */
+
 }
 
 .paper-content h1 {
