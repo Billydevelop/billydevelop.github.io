@@ -613,6 +613,7 @@
         <div id="dDayTime" class="d-day-time">00:00:00</div>
         <div class="d-day-footer">기준일: 10월 1일 00시</div>
     </div>
+
     
 
     <div class="bgm-container">
@@ -687,7 +688,7 @@
         <div class="popup" id="popup2">
             <img src="./mainassets/aim2-click-image.png" alt="복어단 편지지 3">
             <div class="btndetail">
-            <h2>[100일:도르핀 키우기]</h2>
+            <h2>[100주년:도르핀 키우기]</h2>
             <h2>도르핀을 키우고 컬렉션을 수집하세요</h2>
             <h2>채팅치고 통나무들고</h2>
             <h2>고로시, 도르 핀볼도!</h2>
@@ -742,7 +743,7 @@
                     <img src="./assets/SONGBOOK_Symbol.png" alt="노래책 아이콘">
                 </a>
                 <a href="https://fancim.me/celeb/profile.aspx?cu_id=finiy11" target="_blank" title="노래책">
-                    <img src="./assets/fancim_Symbol.png" alt="노래책 아이콘">
+                    <img src="./assets/fancim_Symbol.png" alt="팬심 아이콘">
                 </a>
 
             </div>
@@ -750,15 +751,15 @@
 
     <script>
 
-document.addEventListener("DOMContentLoaded", () => {
-    // 여기에 기존 코드를 삽입
-    const popup = document.getElementById("videoPopup");
-    if (popup) {
-        popup.classList.add("active"); // 팝업 표시
-    } else {
-        console.error("videoPopup element not found!");
-    }
-});
+        document.addEventListener("DOMContentLoaded", () => {
+            // 여기에 기존 코드를 삽입
+            const popup = document.getElementById("videoPopup");
+            if (popup) {
+                popup.classList.add("active"); // 팝업 표시
+            } else {
+                console.error("videoPopup element not found!");
+            }
+        });
 
         // 페이지 로드 시 자동으로 팝업 표시
         window.onload = function () {
@@ -784,46 +785,45 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        const targetDate = new Date(new Date().getFullYear(), 9, 1, 0, 0, 0);
 
-        function calculateDday() {
-        const targetDate = new Date(new Date().getFullYear(), 9, 1, 0, 0, 0); // 10월 1일 00시
-        const now = new Date();
+        const targetDate = new Date(2024, 9, 1, 0, 0, 0); // 기준일: 2024년 10월 1일 00시
 
-        // 시간 차이 계산
-        const diffTime = targetDate - now;
-        const totalSeconds = Math.floor(Math.abs(diffTime) / 1000); // 초 단위로 절대값 계산
+function calculateElapsedTime() {
+    const now = new Date(); // 현재 날짜와 시간
 
-        // 일, 시, 분, 초 계산
-        const days = Math.ceil(diffTime / (1000 * 60 * 60 * 24) - 1); // 디데이
-        const hours = String(Math.floor(totalSeconds / 3600) % 24).padStart(2, '0');
-        const minutes = String(Math.floor(totalSeconds / 60) % 60).padStart(2, '0');
-        const seconds = String(totalSeconds % 60).padStart(2, '0');
+    // 시간 차이 계산 (현재 시간 - 기준일)
+    const diffTime = now - targetDate; // 경과 시간 (밀리초 단위)
+    const totalSeconds = Math.max(0, Math.floor(diffTime / 1000)); // 초 단위 계산
 
-        // HTML 요소 선택
-        const dDayElement = document.getElementById("dDay");
-        const dDayTimeElement = document.getElementById("dDayTime");
+    // 일, 시, 분, 초 계산
+    const days = Math.floor(totalSeconds / (3600 * 24)+1); // 총 경과 일수
+    const hours = String(Math.floor((totalSeconds / 3600) % 24)).padStart(2, '0'); // 시
+    const minutes = String(Math.floor((totalSeconds / 60) % 60)).padStart(2, '0'); // 분
+    const seconds = String(totalSeconds % 60).padStart(2, '0'); // 초
 
-        if (!dDayElement || !dDayTimeElement) {
-            console.error("D-Day elements are missing in the HTML!");
-            return;
-        }
+    // HTML 요소 선택
+    const dDayElement = document.getElementById("dDay");
+    const dDayTimeElement = document.getElementById("dDayTime");
 
-        // 디데이 및 시분초 업데이트
-        if (diffTime >= 0) {
-            dDayElement.textContent = `D-${days}`;
-        } else {
-            const pastDays = Math.abs(days);
-            dDayElement.textContent = `D+${pastDays}`;
-        }
-        dDayTimeElement.textContent = `${hours}:${minutes}:${seconds}`;
+    if (!dDayElement || !dDayTimeElement) {
+        console.error("D-Day elements are missing in the HTML!");
+        return;
     }
 
-    // 페이지 로드 시 실행 및 매 초 업데이트
-    window.onload = function () {
-        calculateDday(); // 초기 실행
-        setInterval(calculateDday, 1000); // 1초마다 업데이트
-    };
+    // D-Day 및 시간 업데이트
+    dDayElement.textContent = `D+${days}`;
+    dDayTimeElement.textContent = `${hours}:${minutes}:${seconds}`;
+}
+
+// 페이지 로드 시 실행 및 매 초 업데이트
+window.onload = function () {
+    calculateElapsedTime(); // 초기 실행
+    setInterval(calculateElapsedTime, 1000); // 1초마다 업데이트
+};
+
+
+
+
 
 
 
