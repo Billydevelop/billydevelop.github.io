@@ -448,7 +448,7 @@
             transform: translate(-50%, -50%) scale(0);
             width: 90%;
             max-width: 800px;
-            background-color: #000;
+            background-color: #363636;
             border-radius: 40px;
             padding: 20px;
             text-align: center;
@@ -495,7 +495,17 @@
         }
 
         .video-popup img {
-            width:100%
+            width: 100%;
+        }
+        
+        .video-popup video-container {
+            display: flex;
+            gap: 20px; /* 간격 조정 */
+        }
+        .video-popup  iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
         }
 
 
@@ -720,11 +730,16 @@
         <div class="video-popup" id="videoPopup">
             <button class="close-btn" onclick="closeVideoPopup()">&times;</button>
             <img src="./videoAssets/video상단배너.png" alt="배너">
-            <a href="https://drive.google.com/file/d/1mXzzt5X7twKzyF4nCkJTjHnvbtXVfcu-/view?usp=drive_link" target="_blank">
-                <img src="./assets/[도르핀 데뷔 100일] 도르핀 자투리 모음.png" alt="자투리 모음">
-            </a>
+            <div class="video-container">
+                <a href="https://www.youtube.com/watch?v=339S6SUn3fs" target="_blank" class="image-link">
+                    <img src="./assets/Frame 1000003180.png" alt="Video Thumbnail">
+                </a>   
+                <a href="https://www.youtube.com/watch?v=Bpfe_t3cQ7Q" target="_blank" class="image-link">
+                    <img src="./assets/[도르핀 데뷔 100일] 도르핀 자투리 모음.png" alt="Video Thumbnail">
+                </a>
         </div>
-        
+    </div>
+
 
             <div class="social-links">
                 <a href="https://ch.sooplive.co.kr/333333333327" target="_blank" title="숲">
